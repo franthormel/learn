@@ -1,0 +1,31 @@
+<div class="content-padding">
+    <h3>Badges with configurations</h3>
+    <!--Badge overlap-->
+    <p>
+        <span [matBadge]="badges" matBadgeOverlap="false">Text with overlapping badge</span>
+    </p>
+
+    <!--Badge size-->
+    <p>
+        Button with a badge on the left
+        <button mat-raised-button color="primary" [matBadge]="badges" matBadgePosition="before" matBadgeColor="accent">
+            Action
+        </button>
+    </p>
+
+    <!--Badge hide-->
+    <p>
+        Button toggles badge visibility
+        <button mat-raised-button [matBadge]="badges" [matBadgeHidden]="hidden" (click)="toggleVisibility()">
+            Hide
+        </button>
+    </p>
+
+    <!--Badge with icon-->
+    <p>
+        Icon with a badge
+        <mat-icon [matBadge]="badges" matBadgeColor="warn">home</mat-icon>
+        <!--Include text description for screenreaders-->
+        <span class="cdk-visually-hidden">Home icon with badge showing the number 15</span>
+    </p>
+</div>
