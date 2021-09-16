@@ -1,0 +1,15 @@
+<div class="content-padding">
+    <h3>Autocomplete input with filters</h3>
+    <form>
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Country</mat-label>
+            <input type="text" placeholder="Choose a country" matInput [formControl]="myControl"
+                [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let country of filteredCountries | async " [value]="country">
+                    {{ country }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>
