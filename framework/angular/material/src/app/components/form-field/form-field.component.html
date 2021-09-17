@@ -1,0 +1,36 @@
+<div class="content-padding">
+    <h3>Form field with configurations</h3>
+    <div class="div-side-two">
+        <h4>Result</h4>
+        <mat-form-field class="form-field" [appearance]="formGroupValue('appearance')"
+            [floatLabel]="formGroupValue('floatLabel')" [hideRequiredMarker]="formGroupValue('required')">
+            <mat-label>Name</mat-label>
+            <input matInput required type="text" autocomplete="off">
+        </mat-form-field>
+    </div>
+    <div class="div-side-two">
+        <h4>Configuration</h4>
+        <form [formGroup]="formGroup">
+            <mat-form-field class="form-controls">
+                <mat-label>Change appearance</mat-label>
+                <mat-select formControlName="appearance">
+                    <mat-option value="legacy">Legacy</mat-option>
+                    <mat-option value="standard">Standard</mat-option>
+                    <mat-option value="fill">Fill</mat-option>
+                    <mat-option value="outline">Outline</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-slide-toggle color="primary" class="form-controls" formControlName="required">
+                Hide required marker
+            </mat-slide-toggle>
+            <div>
+                <label>Float label: </label>
+                <mat-radio-group formControlName="floatLabel">
+                    <mat-radio-button value="auto">Auto</mat-radio-button>
+                    <mat-radio-button value="always">Always</mat-radio-button>
+                    <mat-radio-button value="never">Never</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </form>
+    </div>
+</div>
