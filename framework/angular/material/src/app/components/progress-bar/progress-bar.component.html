@@ -1,0 +1,55 @@
+<div class="content-padding">
+    <h3>Progress-bar with configurations</h3>
+
+    <!--Color-->
+    <section>
+        <label class="elem-margin">Color</label>
+        <mat-radio-group [(ngModel)]="color">
+            <mat-radio-button class="elem-margin" value="primary">
+                Primary
+            </mat-radio-button>
+            <mat-radio-button class="elem-margin" value="accent">
+                Accent
+            </mat-radio-button>
+            <mat-radio-button class="elem-margin" value="warn">
+                Warn
+            </mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <!--Mode-->
+    <section>
+        <label class="elem-margin">Mode</label>
+        <mat-radio-group [(ngModel)]="mode">
+            <mat-radio-button class="elem-margin" value="determinate">
+                Determinate
+            </mat-radio-button>
+            <mat-radio-button class="elem-margin" value="indeterminate">
+                Indeterminate
+            </mat-radio-button>
+            <mat-radio-button class="elem-margin" value="buffer">
+                Buffer
+            </mat-radio-button>
+            <mat-radio-button class="elem-margin" value="query">
+                Query
+            </mat-radio-button>
+        </mat-radio-group>
+    </section>
+
+    <!--Value sliders-->
+    <section>
+        <label class="elem-margin">Progress</label>
+        <mat-slider [thumbLabel]="true" class="elem-margin" [(ngModel)]="value"></mat-slider>
+        <label class="elem-margin">Buffer</label>
+        <mat-slider [thumbLabel]="true" class="elem-margin" [(ngModel)]="bufferValue"></mat-slider>
+    </section>
+
+    <!--Progres-bar-->
+    <section>
+        <mat-progress-bar [color]="color"
+                          [mode]="mode"
+                          [value]="value"
+                          [bufferValue]="bufferValue">
+        </mat-progress-bar>
+    </section>
+</div>
