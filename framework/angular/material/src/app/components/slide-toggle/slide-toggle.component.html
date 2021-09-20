@@ -1,0 +1,18 @@
+<div class="content-padding">
+    <h3 class="elem-margin">Slide toggle with configurations</h3>
+    <section class="elem-section">
+        <mat-radio-group [(ngModel)]="color">
+            <mat-radio-button class="elem-margin" value="primary">Primary</mat-radio-button>
+            <mat-radio-button class="elem-margin" value="accent">Accent</mat-radio-button>
+            <mat-radio-button class="elem-margin" value="warn">Warn</mat-radio-button>
+        </mat-radio-group>
+    </section>
+    <section class="elem-section">
+        <mat-checkbox [(ngModel)]="checked">Checked</mat-checkbox>
+    </section>
+    <section class="elem-section">
+        <mat-checkbox [(ngModel)]="disabled">Disabled</mat-checkbox>
+    </section>
+    <h3>Result: </h3>
+    <mat-slide-toggle [color]="color" [checked]="checked" [disabled]="disabled"></mat-slide-toggle>
+</div>
