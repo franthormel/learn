@@ -1,0 +1,52 @@
+<div class="content-padding">
+    <h3>Slider with configurations</h3>
+
+    <!--Form fields-->
+    <section>
+        <mat-form-field class="form-field form-margin" appearance="fill">
+            <mat-label>Value</mat-label>
+            <input matInput type="number" [(ngModel)]="value">
+        </mat-form-field>
+        <mat-form-field class="form-field form-margin" appearance="fill">
+            <mat-label>Minimum value</mat-label>
+            <input matInput type="number" [(ngModel)]="min">
+        </mat-form-field>
+        <mat-form-field class="form-field form-margin" appearance="fill">
+            <mat-label>Maximum value</mat-label>
+            <input matInput type="number" [(ngModel)]="max">
+        </mat-form-field>
+        <mat-form-field class="form-field form-margin" appearance="fill">
+            <mat-label>Step size</mat-label>
+            <input matInput type="number" [(ngModel)]="step">
+        </mat-form-field>
+    </section>
+
+    <!--Checkboxes-->
+    <section class="checkbox">
+        <mat-checkbox class="form-margin" [(ngModel)]="showTicks">Show ticks</mat-checkbox>
+        <mat-checkbox class="form-margin" [(ngModel)]="autoTicks">Auto ticks</mat-checkbox>
+        <mat-form-field class="form-margin" appearance="fill" *ngIf="showTicks">
+            <mat-label>Tick interval</mat-label>
+            <input matInput type="number" [(ngModel)]="tickInterval">
+        </mat-form-field>
+    </section>
+
+    <section id="larger-bottom">
+        <mat-checkbox class="form-margin" [(ngModel)]="thumbLabel">Show thumb label</mat-checkbox>
+        <mat-checkbox class="form-margin" [(ngModel)]="vertical">Vertical</mat-checkbox>
+        <mat-checkbox class="form-margin" [(ngModel)]="invert">Inverted</mat-checkbox>
+        <mat-checkbox class="form-margin" [(ngModel)]="disabled">Disabled</mat-checkbox>
+    </section>
+
+    <mat-slider [disabled]="disabled"
+                [disabled]="disabled"
+                [invert]="invert"
+                [max]="max"
+                [min]="min"
+                [step]="step"
+                [thumbLabel]="thumbLabel"
+                [tickInterval]="getTickInterval()"
+                [(ngModel)]="value"
+                [vertical]="vertical">
+    </mat-slider>
+</div>
