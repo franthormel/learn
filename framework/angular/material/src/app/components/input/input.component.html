@@ -1,0 +1,111 @@
+<div class="content-padding">
+    <mat-tab-group dynamicHeight>
+        <!--Input-->
+        <mat-tab label="Input">
+            <div class="content-padding">
+                <!--LEFT-->
+                <div class="div-side-two">
+                    <h4>Result</h4>
+                    <!--Configurable Input-->
+                    <mat-form-field class="form-field">
+                        <mat-label>Input {{ inputType }}</mat-label>
+
+                        <!--Prefix-->
+                        <span *ngIf="showPrefix" matPrefix>1-</span>
+
+                        <input matInput [type]="inputType" [formControl]="formControlInput" autocomplete="off">
+
+                        <!--Hint messages-->
+                        <mat-hint *ngIf="showHints" align="start">Start hint message</mat-hint>
+                        <mat-hint *ngIf="showHints" align="end">End hint message</mat-hint>
+
+                        <!--Clear button-->
+                        <button *ngIf="showClearButton" matSuffix mat-icon-button (click)="clearInputValue()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <!--RIGHT-->
+                <div class="div-side-two">
+                    <h4>Configuration</h4>
+                    <form [formGroup]="formGroupInput">
+                        <mat-form-field class="form-controls">
+                            <mat-label>Change input type</mat-label>
+                            <mat-select formControlName="inputType">
+                                <mat-option *ngFor="let type of inputTypes" [value]="type">
+                                    {{ type }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-slide-toggle color="primary" class="form-controls" formControlName="showClearButton">
+                            Clear Button
+                        </mat-slide-toggle>
+                        <mat-slide-toggle color="primary" class="form-controls" formControlName="showHints">
+                            Hints
+                        </mat-slide-toggle>
+                        <mat-slide-toggle color="primary" class="form-controls" formControlName="showPrefix">
+                            Prefix
+                        </mat-slide-toggle>
+                    </form>
+                </div>
+            </div>
+        </mat-tab>
+
+        <!--Error state matcher-->
+        <mat-tab label="Error state matcher">
+            <div class="content-padding">
+                <mat-form-field class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="formControlEmail"
+                        [errorStateMatcher]="customErrorStateMatcher">
+                    <mat-hint>Errors appear instantly!</mat-hint>
+                    <mat-error *ngIf="invalidEmail">Enter a valid email address</mat-error>
+                    <mat-error *ngIf="requiredEmail">Email address is required</mat-error>
+                </mat-form-field>
+            </div>
+        </mat-tab>
+
+        <!--Form-->
+        <mat-tab label="Basic form">
+            <form class="content-padding" [formGroup]="formGroupBasic">
+                <h4>Basic Information</h4>
+                <mat-form-field class="full-width">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" placeholder="John Denver" formControlName="name">
+                    <mat-error *ngIf="requiredBasicForm('name')">Name is required</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="john@email.com" formControlName="email">
+                    <mat-error *ngIf="invalidBasicFormEmail">Enter a valid email address</mat-error>
+                    <mat-error *ngIf="requiredBasicForm('email')">Email address is required</mat-error>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-error *ngIf="requiredBasicForm('password')">Password is required</mat-error>
+                </mat-form-field>
+                <h4>Schedule</h4>
+                <div class="full-width">
+                    <mat-form-field class="form-side-left">
+                        <mat-label>Date</mat-label>
+                        <input matInput type="date" formControlName="date">
+                    </mat-form-field>
+                    <mat-form-field class="form-side-right">
+                        <mat-label>Time</mat-label>
+                        <input matInput type="time" formControlName="time">
+                    </mat-form-field>
+                </div>
+                <mat-form-field class="full-width">
+                    <mat-label>Instructions</mat-label>
+                    <textarea matInput maxlength="64" formControlName="message"></textarea>
+                    <mat-hint align="start">For scheduler's use</mat-hint>
+                    <mat-hint align="end">{{ basicFormTextLength }} / 64</mat-hint>
+                </mat-form-field>
+            </form>
+            <div class="form-result">
+                <h4>{{ basicFormValue }}</h4>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
