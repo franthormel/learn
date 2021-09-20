@@ -1,0 +1,13 @@
+<div class="content-padding">
+    <h3>List with multiple selection</h3>
+    <mat-selection-list #selectionList="matSelectionList">
+        <div mat-subheader>Collection</div>
+        <mat-list-option *ngFor="let music of collection">
+            <mat-icon mat-list-icon>music_note</mat-icon>
+            <div mat-line>{{ music.title }}</div>
+            <div mat-line>{{ music.artist }}</div>
+        </mat-list-option>
+        <mat-divider></mat-divider>
+    </mat-selection-list>
+    <h4 *ngIf="multiple">Current number of selection: {{ selectionList.selectedOptions.selected.length }} </h4>
+</div>
