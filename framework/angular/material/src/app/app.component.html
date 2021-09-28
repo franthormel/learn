@@ -6,6 +6,13 @@
 
 <mat-sidenav-container>
     <mat-sidenav opened mode="side" class="mat-elevation-z8">
+        <h2 matSubheader>Custom</h2>
+        <mat-nav-list>
+            <mat-list-item *ngFor="let custom of customs" [routerLink]="custom.path">
+                {{ custom.name }}
+            </mat-list-item>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
         <h2 matSubheader>Schematics</h2>
         <mat-nav-list>
             <mat-list-item *ngFor="let schematic of schematics" [routerLink]="schematic.path">
