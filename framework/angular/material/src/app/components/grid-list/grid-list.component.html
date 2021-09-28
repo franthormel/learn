@@ -1,6 +1,6 @@
 <div class="content-padding">
     <h3>Grid list with dynamic columns and rows</h3>
-    <mat-grid-list [cols]="cols">
+    <mat-grid-list [cols]="cols" gutterSize="0">
         <mat-grid-tile 
             *ngFor="let tile of tiles" 
             [colspan]="tile.colspan" 
