@@ -14,7 +14,8 @@ export const routes: Routes = [
   },
   {
     path: 'custom',
-    loadChildren: () => import('./custom/custom.module').then((m) => m.CustomModule),
+    loadChildren: () =>
+      import('./custom/custom.module').then((m) => m.CustomModule),
   },
   { path: '**', redirectTo: 'components', pathMatch: 'full' },
 ];
