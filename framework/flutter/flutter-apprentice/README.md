@@ -17,9 +17,19 @@
   * Widget lifecycle
 
 * ### [Chapter 5: Scrollable Widgets](05-scrollable-widgets\fooderlich) and [Challenges](05-scrollable-widgets\fooderlich-challenge) 
-  * How to use ListView.
-  * How to nest scroll views.
-  * How to leverage the power of GridView.
+  * ListView.
+  * Nested scroll views.
+  * GridView.
+
+* ### [Chapter 6: Interactive Widgets](06-interactive-widgets\fooderlich)
+  * Provider (package) for state management
+  * intl (package) for date formatting
+  * DatePicker
+  * TimePicker
+  * ColorPicker
+  * Inkwell for gestures
+  * Dismissible
+  * IndexedStack widget for preserving widget state combined with BottomNavigationBar
 
 
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
