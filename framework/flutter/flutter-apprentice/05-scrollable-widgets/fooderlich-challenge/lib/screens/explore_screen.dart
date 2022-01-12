@@ -54,15 +54,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   void _scrollListener() {
-    if (_scrollController.offset >=
-            _scrollController.position.maxScrollExtent &&
-        !_scrollController.position.outOfRange) {
+    final offset = _scrollController.offset;
+    final position = _scrollController.position;
+    final inRange = !position.outOfRange;
+
+    if (offset >= position.maxScrollExtent && inRange) {
       print('I am at the bottom!');
     }
 
-    if (_scrollController.offset <=
-            _scrollController.position.minScrollExtent &&
-        !_scrollController.position.outOfRange) {
+    if (offset <= position.minScrollExtent && inRange) {
       print('I am at the top!');
     }
   }
