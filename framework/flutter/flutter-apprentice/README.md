@@ -2,26 +2,26 @@
 ##  by the raywenderlich Tutorial Team
 
 
-* ### [Chapter 2: Hello, Flutter](02-hello-flutter\recipes)
+* ### [Chapter 2: Hello, Flutter](02-hello-flutter/recipes)
 
-* ### [Chapter 3: Basic Widgets](03-basic-widgets\fooderlich)
+* ### [Chapter 3: Basic Widgets](03-basic-widgets/fooderlich)
   * Structure and navigation
   * Displaying information
   * Positioning widgets
 
-* ### [Chapter 4: Understanding Widgets](04-understanding-widgets\fooderlich)
+* ### [Chapter 4: Understanding Widgets](04-understanding-widgets/fooderlich)
   * Widgets
   * Widget rendering
   * Flutter Inspector
   * Types of widgets
   * Widget lifecycle
 
-* ### [Chapter 5: Scrollable Widgets](05-scrollable-widgets\fooderlich) and [Challenges](05-scrollable-widgets\fooderlich-challenge) 
+* ### [Chapter 5: Scrollable Widgets](05-scrollable-widgets/fooderlich) and [Challenges](05-scrollable-widgets/fooderlich-challenge) 
   * ListView.
   * Nested scroll views.
   * GridView.
 
-* ### [Chapter 6: Interactive Widgets](06-interactive-widgets\fooderlich)
+* ### [Chapter 6: Interactive Widgets](06-interactive-widgets/fooderlich)
   * Provider (package) for state management
   * intl (package) for date formatting
   * DatePicker
