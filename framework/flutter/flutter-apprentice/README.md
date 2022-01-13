@@ -31,6 +31,12 @@
   * Dismissible
   * IndexedStack widget for preserving widget state combined with BottomNavigationBar
 
+* ### [Chapter 7: Routes & Navigation](07-routes-and-navigation/fooderlich)
+  * Navigator 1.0
+  * Navigator 2.0
+  * Navigation with state management
+  * Handling Android back button
+
 
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
