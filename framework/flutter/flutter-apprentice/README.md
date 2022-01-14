@@ -37,6 +37,9 @@
   * Navigation with state management
   * Handling Android back button
 
+* ### [Chapter 8: Deep Links & Web URLs](08-deep-links-and-web-URLs/fooderlich)
+  * Deep linking
+
 
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
