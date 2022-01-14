@@ -22,11 +22,11 @@
   * GridView.
 
 * ### [Chapter 6: Interactive Widgets](06-interactive-widgets/fooderlich)
-  * Provider (package) for state management
+  * State management using [provider](https://pub.dev/packages/provider)
   * intl (package) for date formatting
   * DatePicker
   * TimePicker
-  * ColorPicker
+  * [ColorPicker](https://pub.dev/packages/flutter_colorpicker)
   * Inkwell for gestures
   * Dismissible
   * IndexedStack widget for preserving widget state combined with BottomNavigationBar
@@ -38,8 +38,9 @@
   * Handling Android back button
 
 * ### [Chapter 8: Deep Links & Web URLs](08-deep-links-and-web-URLs/fooderlich)
-  * Deep linking
-
+  * iOS & Android
+  * [url_launcher](https://pub.dev/packages/url_launcher)
+  * [shared_preferences](https://pub.dev/packages/shared_preferences)
 
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 

@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../models/models.dart';
 import '../screens/screens.dart';
+import 'app_link.dart';
 
-class AppRouter extends RouterDelegate //TODO: Add <AppLink>
-    with
-        ChangeNotifier,
-        PopNavigatorRouterDelegateMixin {
+class AppRouter extends RouterDelegate<AppLink>
+    with ChangeNotifier, PopNavigatorRouterDelegateMixin {
   @override
   final GlobalKey<NavigatorState> navigatorKey;
 
@@ -47,18 +46,16 @@ class AppRouter extends RouterDelegate //TODO: Add <AppLink>
         ] else ...[
           Home.page(appStateManager.getSelectedTab),
           if (groceryManager.isCreatingNewItem)
-            GroceryItemScreen.page(onCreate: (item) {
-              groceryManager.addItem(item);
-            }, onUpdate: (item, index) {
-              // No update
-            }),
+            GroceryItemScreen.page(
+                onCreate: (item) {
+                  groceryManager.addItem(item);
+                },
+                onUpdate: (_, __) {}),
           if (groceryManager.selectedIndex != -1)
             GroceryItemScreen.page(
                 item: groceryManager.selectedGroceryItem,
                 index: groceryManager.selectedIndex,
-                onCreate: (_) {
-                  // No create
-                },
+                onCreate: (_) {},
                 onUpdate: (item, index) {
                   groceryManager.updateItem(item, index);
                 }),
@@ -94,11 +91,64 @@ class AppRouter extends RouterDelegate //TODO: Add <AppLink>
     return true;
   }
 
-  // TODO: Convert app state to applink
+  /// Convert app state to appLink
+  AppLink getCurrentPath() {
+    if (!appStateManager.isLoggedIn) {
+      return AppLink(
+        location: AppLink.kLoginPath,
+      );
+    } else if (!appStateManager.isOnboardingComplete) {
+      return AppLink(
+        location: AppLink.kOnboardingPath,
+      );
+    } else if (profileManager.didSelectUser) {
+      return AppLink(
+        location: AppLink.kProfilePath,
+      );
+    } else if (groceryManager.isCreatingNewItem) {
+      return AppLink(
+        location: AppLink.kItemPath,
+      );
+    } else if (groceryManager.selectedGroceryItem != null) {
+      return AppLink(
+        location: AppLink.kItemPath,
+        itemId: groceryManager.selectedGroceryItem?.id,
+      );
+    } else {
+      return AppLink(
+        location: AppLink.kHomePath,
+        currentTab: appStateManager.getSelectedTab,
+      );
+    }
+  }
 
-  // TODO: Apply configuration helper
-
-  // TODO: Replace setNewRoutePath
+  // Apply the helper
   @override
-  Future<void> setNewRoutePath(configuration) async => null;
+  AppLink get currentConfiguration => getCurrentPath();
+
+  // Map a specific URL path to a specific screen
+  @override
+  Future<void> setNewRoutePath(AppLink newLink) async {
+    switch (newLink.location) {
+      case AppLink.kProfilePath:
+        profileManager.tapOnProfile(true);
+        break;
+      case AppLink.kItemPath:
+        final itemId = newLink.itemId;
+        if (itemId != null) {
+          groceryManager.setSelectedGroceryItem(itemId);
+        } else {
+          groceryManager.createNewItem();
+        }
+        profileManager.tapOnProfile(false);
+        break;
+      case AppLink.kHomePath:
+        appStateManager.goToTab(newLink.currentTab ?? 0);
+        profileManager.tapOnProfile(false);
+        groceryManager.groceryItemTapped(-1);
+        break;
+      default:
+        break;
+    }
+  }
 }
