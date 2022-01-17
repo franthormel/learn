@@ -51,6 +51,11 @@
   * [json_annotation](https://pub.dev/packages/json_annotation)
   * [json_serializable](https://pub.dev/packages/json_serializable)
 
+* ### [Chapter 11: Networking in Flutter](11-networking-in-flutter/recipe_finder)
+  * [http](https://pub.dev/packages/http)
+  * API services
+  * FutureBuilder
+
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
 
