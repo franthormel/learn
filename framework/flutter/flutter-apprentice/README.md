@@ -56,6 +56,11 @@
   * API services
   * FutureBuilder
 
+* ### [Chapter 12: Using the Chopper Library](12-using-the-chopper-library/recipe_finder)
+  * [chopper](https://pub.dev/packages/chopper)
+  * Interceptors and converters
+  * Logging network activity using HttpLoggingInterceptor
+
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
 
