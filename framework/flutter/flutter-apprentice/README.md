@@ -22,7 +22,7 @@
   * GridView.
 
 * ### [Chapter 6: Interactive Widgets](06-interactive-widgets/fooderlich)
-  * State management using [provider](https://pub.dev/packages/provider)
+  * Intro to state management using [provider](https://pub.dev/packages/provider)
   * intl (package) for date formatting
   * DatePicker
   * TimePicker
@@ -58,8 +58,13 @@
 
 * ### [Chapter 12: Using the Chopper Library](12-using-the-chopper-library/recipe_finder)
   * [chopper](https://pub.dev/packages/chopper)
+  * [logger](https://pub.dev/packages/logger)
   * Interceptors and converters
   * Logging network activity using HttpLoggingInterceptor
+
+* ### [Chapter 13: State Management](13-state-management/recipe_finder)
+  * [provider](https://pub.dev/packages/provider)
+  * Mocking data using JSON
 
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
