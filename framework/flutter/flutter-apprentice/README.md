@@ -66,6 +66,12 @@
   * [provider](https://pub.dev/packages/provider)
   * Mocking data using JSON
 
+* ### [Chapter 14: Streams](14-streams/recipe_finder)
+  * Streams
+    * StreamController
+    * StreamBuilder widget
+  * Abstract classes or interface
+
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
 
