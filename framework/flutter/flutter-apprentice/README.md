@@ -72,6 +72,17 @@
     * StreamBuilder widget
   * Abstract classes or interface
 
+* ### [Chapter 15: Saving Data with SQLite](15-saving-data-with-sqlite/recipe_finder)
+  * Longer and tedious
+    * [sqflite](https://pub.dev/packages/sqflite)
+    * [sqlbrite](https://pub.dev/packages/sqlbrite)
+    * [path_provider](https://pub.dev/packages/path_provider)
+    * [synchronized](https://pub.dev/packages/synchronized)
+  * Shorter and quick
+    * Book uses [moor_flutter](https://pub.dev/packages/moor_flutter) and [moor_generator](https://pub.dev/packages/moor_generator)
+    * Latest package from the same author is [drift](https://pub.dev/packages/drift) and [drift_dev](https://pub.dev/packages/drift_dev)
+    * Database Access Objects (DAO)
+
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
 

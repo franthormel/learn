@@ -7,20 +7,12 @@ class Ingredient extends Equatable {
   final String? name;
   final double? weight;
 
-  Ingredient({
-    this.id,
-    this.recipeId,
-    this.name,
-    this.weight,
-  });
+  Ingredient({this.id, this.recipeId, this.name, this.weight});
 
   @override
-  List<Object?> get props => [
-        recipeId,
-        name,
-        weight,
-      ];
+  List<Object?> get props => [recipeId, name, weight];
 
+  // Create a Ingredient from JSON data
   factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
         id: json['ingredientId'],
         recipeId: json['recipeId'],
@@ -28,6 +20,8 @@ class Ingredient extends Equatable {
         weight: json['weight'],
       );
 
+  // Convert our Ingredient to JSON to make it
+  // easier when we store it in the database
   Map<String, dynamic> toJson() => {
         'ingredientId': id,
         'recipeId': recipeId,
