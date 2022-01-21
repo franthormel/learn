@@ -83,12 +83,19 @@
     * Latest package from the same author is [drift](https://pub.dev/packages/drift) and [drift_dev](https://pub.dev/packages/drift_dev)
     * Database Access Objects (DAO)
 
-* ### [Chapter 16: Platform Specific App Assets](16-platform-specific-app-assets/recipe_finder)
+* ### Chapter 16: Platform Specific App Assets
   * Icon
   * Name
+  * [Image Asset Studio](https://developer.android.com/studio/write/image-asset-studio)
   * Splash screen or launch image
     * [splashscreen](https://pub.dev/packages/splashscreen)
 
+* ### Chapter 17: Build & Release an Android App
+  * Keystore signing
+  * Uploading to Google Play Store
+
+* ### Chapter 18: Build & Release an iOS App
+* 
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
 
