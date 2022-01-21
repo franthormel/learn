@@ -83,6 +83,12 @@
     * Latest package from the same author is [drift](https://pub.dev/packages/drift) and [drift_dev](https://pub.dev/packages/drift_dev)
     * Database Access Objects (DAO)
 
+* ### [Chapter 16: Platform Specific App Assets](16-platform-specific-app-assets/recipe_finder)
+  * Icon
+  * Name
+  * Splash screen or launch image
+    * [splashscreen](https://pub.dev/packages/splashscreen)
+
 ### Resources taken from [*the book's provided learning materials.*](https://github.com/raywenderlich/flta-materials)
 
 
