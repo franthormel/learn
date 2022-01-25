@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "772280781321",
+    "project_id": "flutter-apprentice-raychat",
+    "storage_bucket": "flutter-apprentice-raychat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772280781321:android:4bc3009d85fa6a3880c6d8",
+        "android_client_info": {
+          "package_name": "com.raywenderlich.RayChat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772280781321-sun1d3gibpvsn2kn950r9j3ikukv79op.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJQjyUzILMKssyrZgcaqCG85y_XIUMkfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772280781321-sun1d3gibpvsn2kn950r9j3ikukv79op.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
