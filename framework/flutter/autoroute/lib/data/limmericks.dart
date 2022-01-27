@@ -1,6 +1,6 @@
 import '../models/index.dart' show Limerick;
 
-final  limericks = <Limerick>[
+final limericks = <Limerick>[
   Limerick(
     title: 'Old Man with a beard',
     body:

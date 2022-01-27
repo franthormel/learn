@@ -6,20 +6,20 @@ class DisplayPage extends StatelessWidget {
   final String? title;
   final String? text;
   final Color? color;
-  final void Function()? callback;
+  final void Function()? delayedCallback;
 
   const DisplayPage({
     this.title,
     this.text,
     this.color,
-    this.callback,
+    this.delayedCallback,
     Key? key,
   }) : super(key: key);
 
   void executeCallback() {
-    if (callback != null) {
+    if (delayedCallback != null) {
       // Delay calling the function by 3 seconds
-      Timer(const Duration(seconds: 3), callback!);
+      Timer(const Duration(seconds: 3), delayedCallback!);
     }
   }
 

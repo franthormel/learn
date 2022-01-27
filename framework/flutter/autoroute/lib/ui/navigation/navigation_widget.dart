@@ -25,7 +25,7 @@ class NavigationPageWidget extends StatelessWidget {
               style: TextStyle(
                 color: Colors.grey[800],
                 fontWeight: FontWeight.w600,
-                fontSize: Theme.of(context).textTheme.headline6!.fontSize,
+                fontSize: 19.0,
               ),
             ),
             Icon(icon),

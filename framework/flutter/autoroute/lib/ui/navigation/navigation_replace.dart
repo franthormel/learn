@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../../../router/router.gr.dart';
+import '../../router/router.gr.dart';
+import '../../router/router.names.dart';
+
 import 'navigation_widget.dart';
 
 class NavigationReplaceWidget extends StatelessWidget {
@@ -29,12 +31,12 @@ class NavigationReplaceWidget extends StatelessWidget {
         onPressed: () {
           router.push(
             DisplayRoute(
-              callback: () {
-                router.replace(const LimerickRoute());
-              },
               color: _kColor,
               title: 'Replace',
               text: 'This page will be replaced in 3 seconds.',
+              delayedCallback: () {
+                router.replace(LimerickRoute());
+              },
             ),
           );
         },
@@ -45,12 +47,13 @@ class NavigationReplaceWidget extends StatelessWidget {
         onPressed: () {
           router.push(
             DisplayRoute(
-              callback: () {
-                router.replaceNamed('/limerick');
-              },
               color: _kColor,
               title: 'Replace Named',
-              text: 'This page will be replaced in 3 seconds.',
+              text:
+                  'This page will be replaced with a limerick page in 3 seconds.',
+              delayedCallback: () {
+                router.replaceNamed(RouteNames.limerick);
+              },
             ),
           );
         },
@@ -63,11 +66,10 @@ class NavigationReplaceWidget extends StatelessWidget {
             DisplayRoute(
               color: _kColor,
               title: 'Replace All',
-              text: 'This page will be replaced in 3 seconds.',
-              callback: () {
-                router.replaceAll([
-                  const NavigationRoute(),
-                ]);
+              text:
+                  'This page will be replaced with the navigation page in 3 seconds.',
+              delayedCallback: () {
+                router.replaceAll([const NavigationRoute()]);
               },
             ),
           );
