@@ -42,7 +42,7 @@ class NavigationNavigateWidget extends StatelessWidget {
         child: const Text('Navigate Named'),
         style: style,
         onPressed: () {
-          router.navigateNamed(RouteNames.limerick);
+          router.navigateNamed(RoutePaths.limerick);
         },
       ),
       ElevatedButton(

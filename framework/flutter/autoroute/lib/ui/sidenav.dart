@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../router/router.names.dart';
+import '../router/router.gr.dart';
 
 class SideNavPage extends StatelessWidget {
   final String title;
@@ -27,52 +27,22 @@ class SideNavPage extends StatelessWidget {
             ListTile(
               title: const Text('Navigation'),
               onTap: () {
-                router.navigateNamed(RouteNames.navigation);
+                router.navigate(const NavigationRoute());
                 router.pop();
               },
             ),
             ListTile(
               title: const Text('Passing Arguments'),
               onTap: () {
-                router.navigateNamed(RouteNames.passingArguments);
+                router.navigate(const PassingArgumentsRoute());
                 router.pop();
               },
             ),
             ListTile(
               title: const Text('Page Transitions'),
               onTap: () {
-                // TODO
-              },
-            ),
-            ListTile(
-              title: const Text('Nested Routes'),
-              onTap: () {
-                // TODO
-              },
-            ),
-            const Divider(),
-            ListTile(
-              title: const Text('Declarative Routing'),
-              onTap: () {
-                // TODO
-              },
-            ),
-            ListTile(
-              title: const Text('Bottom Navigation Bar'),
-              onTap: () {
-                // TODO
-              },
-            ),
-            ListTile(
-              title: const Text('Route Guards'),
-              onTap: () {
-                // TODO
-              },
-            ),
-            ListTile(
-              title: const Text('Authentication'),
-              onTap: () {
-                // TODO
+                router.replace(const TransitionsRoute());
+                router.pop();
               },
             ),
           ],

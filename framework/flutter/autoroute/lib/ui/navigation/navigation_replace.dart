@@ -52,7 +52,7 @@ class NavigationReplaceWidget extends StatelessWidget {
               text:
                   'This page will be replaced with a limerick page in 3 seconds.',
               delayedCallback: () {
-                router.replaceNamed(RouteNames.limerick);
+                router.replaceNamed(RoutePaths.limerick);
               },
             ),
           );

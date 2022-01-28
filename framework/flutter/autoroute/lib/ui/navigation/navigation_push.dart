@@ -39,7 +39,7 @@ class NavigationPushWidget extends StatelessWidget {
         child: const Text('Push Named'),
         style: style,
         onPressed: () {
-          router.pushNamed(RouteNames.limerick);
+          router.pushNamed(RoutePaths.limerick);
         },
       ),
       ElevatedButton(

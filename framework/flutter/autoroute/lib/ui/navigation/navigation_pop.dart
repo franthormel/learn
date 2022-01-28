@@ -132,7 +132,7 @@ class NavigationPopWidget extends StatelessWidget {
                   'This page will be popped until a limerick page is displayed in 3 seconds.',
               title: 'Pop Until Route with Name',
               delayedCallback: () {
-                router.popUntilRouteWithName(RouteNames.limerick);
+                router.popUntilRouteWithName(RoutePaths.limerick);
               },
             ),
           ]);

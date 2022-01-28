@@ -13,47 +13,42 @@ class PassingArgumentsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SideNavPage(
       title: 'Passing arguments',
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: limericks.length,
-                itemBuilder: (context, index) {
-                  final limerick = limericks[index];
+      child: ListView.builder(
+        itemCount: limericks.length,
+        itemBuilder: (context, index) {
+          final limerick = limericks[index];
 
-                  return Card(
-                    child: ListTile(
-                      title: Text(limerick.title),
-                      onTap: () async {
-                        final router = AutoRouter.of(context);
-                        final scaffoldMessenger = ScaffoldMessenger.of(context);
-                        final wordsCount = await router.push<int>(
-                          LimerickRoute(index: index),
-                        );
+          return Card(
+            child: ListTile(
+              title: Text(limerick.title),
+              onTap: () async {
+                final router = AutoRouter.of(context);
+                final scaffoldMessenger = ScaffoldMessenger.of(context);
+                final wordsCount = await router.push<int>(
+                  LimerickRoute(index: index),
+                );
 
-                        scaffoldMessenger.showSnackBar(SnackBar(
-                          behavior: SnackBarBehavior.floating,
-                          duration: const Duration(seconds: 5),
-                          action: SnackBarAction(
-                            onPressed: () {
-                              scaffoldMessenger.clearSnackBars();
-                            },
-                            label: 'OK',
-                          ),
-                          content: Text(
-                            'That limerick contained $wordsCount words.',
-                          ),
-                        ));
-                      },
+                if (wordsCount != null) {
+                  scaffoldMessenger.showSnackBar(
+                    SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      duration: const Duration(seconds: 5),
+                      action: SnackBarAction(
+                        onPressed: () {
+                          scaffoldMessenger.clearSnackBars();
+                        },
+                        label: 'OK',
+                      ),
+                      content: Text(
+                        'That limerick contained $wordsCount words.',
+                      ),
                     ),
                   );
-                },
-              ),
+                }
+              },
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
