@@ -1,5 +1,5 @@
-# basics_two
-
+# part_two
+### This example introduces the following topics:
 
     Nested Routes
     Wrapping Routes
@@ -8,4 +8,3 @@
     Route Guards
     Authentication
     Firebase Analytics
-

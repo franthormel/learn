@@ -1,7 +1,6 @@
 # [auto_route](https://pub.dev/packages/auto_route)
 
 Flutter example for using the **`auto_route`** package
-
 This sample is divider into two (2) parts:
 
 ### **I. Basics**
