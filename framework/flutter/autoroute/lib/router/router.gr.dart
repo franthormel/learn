@@ -10,25 +10,26 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i2;
-import 'package:flutter/material.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:flutter/material.dart' as _i4;
 
+import '../ui/colors/colors_authenticate.dart' as _i2;
 import '../ui/index.dart' as _i1;
 
-class AppRouter extends _i2.RootStackRouter {
-  AppRouter([_i3.GlobalKey<_i3.NavigatorState>? navigatorKey])
+class AppRouter extends _i3.RootStackRouter {
+  AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i2.PageFactory> pagesMap = {
+  final Map<String, _i3.PageFactory> pagesMap = {
     NavigationRouter.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
+      return _i3.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.NavigationPage());
     },
     DisplayRouter.name: (routeData) {
       final args = routeData.argsAs<DisplayRouterArgs>(
           orElse: () => const DisplayRouterArgs());
-      return _i2.MaterialPageX<dynamic>(
+      return _i3.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i1.DisplayPage(
               title: args.title,
@@ -42,45 +43,51 @@ class AppRouter extends _i2.RootStackRouter {
       final args = routeData.argsAs<LimerickRouterArgs>(
           orElse: () =>
               LimerickRouterArgs(index: pathParams.optInt('limerickIndex')));
-      return _i2.MaterialPageX<int>(
+      return _i3.MaterialPageX<int>(
           routeData: routeData,
           child: _i1.LimerickPage(index: args.index, key: args.key));
     },
     ColorsWrapperRouter.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
+      return _i3.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.ColorsWrapperPage());
     },
     NotFoundRoute.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
+      return _i3.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.NotFoundPage());
     },
+    ColorsAuthenticateRouter.name: (routeData) {
+      return _i3.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i2.ColorsAuthenticatePage());
+    },
     ColorsRouter.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
+      return _i3.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.ColorsPage());
     }
   };
 
   @override
-  List<_i2.RouteConfig> get routes => [
-        _i2.RouteConfig(NavigationRouter.name, path: '/'),
-        _i2.RouteConfig(DisplayRouter.name, path: '/display'),
-        _i2.RouteConfig(LimerickRouter.name, path: '/limerick'),
-        _i2.RouteConfig(ColorsWrapperRouter.name, path: '/colors', children: [
-          _i2.RouteConfig(ColorsRouter.name,
-              path: '', parent: ColorsWrapperRouter.name),
-          _i2.RouteConfig('*#redirect',
+  List<_i3.RouteConfig> get routes => [
+        _i3.RouteConfig(NavigationRouter.name, path: '/'),
+        _i3.RouteConfig(DisplayRouter.name, path: '/display'),
+        _i3.RouteConfig(LimerickRouter.name, path: '/limerick'),
+        _i3.RouteConfig(ColorsWrapperRouter.name, path: '/colors', children: [
+          _i3.RouteConfig(ColorsAuthenticateRouter.name,
+              path: 'authenticate', parent: ColorsWrapperRouter.name),
+          _i3.RouteConfig(ColorsRouter.name,
+              path: 'ColorsRouter', parent: ColorsWrapperRouter.name),
+          _i3.RouteConfig('*#redirect',
               path: '*',
               parent: ColorsWrapperRouter.name,
-              redirectTo: '',
+              redirectTo: 'ColorsAuthenticateRouter',
               fullMatch: true)
         ]),
-        _i2.RouteConfig(NotFoundRoute.name, path: '*')
+        _i3.RouteConfig(NotFoundRoute.name, path: '*')
       ];
 }
 
 /// generated route for
 /// [_i1.NavigationPage]
-class NavigationRouter extends _i2.PageRouteInfo<void> {
+class NavigationRouter extends _i3.PageRouteInfo<void> {
   const NavigationRouter() : super(NavigationRouter.name, path: '/');
 
   static const String name = 'NavigationRouter';
@@ -88,13 +95,13 @@ class NavigationRouter extends _i2.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.DisplayPage]
-class DisplayRouter extends _i2.PageRouteInfo<DisplayRouterArgs> {
+class DisplayRouter extends _i3.PageRouteInfo<DisplayRouterArgs> {
   DisplayRouter(
       {String? title,
       String? text,
-      _i3.Color? color,
+      _i4.Color? color,
       void Function()? delayedCallback,
-      _i3.Key? key})
+      _i4.Key? key})
       : super(DisplayRouter.name,
             path: '/display',
             args: DisplayRouterArgs(
@@ -115,11 +122,11 @@ class DisplayRouterArgs {
 
   final String? text;
 
-  final _i3.Color? color;
+  final _i4.Color? color;
 
   final void Function()? delayedCallback;
 
-  final _i3.Key? key;
+  final _i4.Key? key;
 
   @override
   String toString() {
@@ -129,8 +136,8 @@ class DisplayRouterArgs {
 
 /// generated route for
 /// [_i1.LimerickPage]
-class LimerickRouter extends _i2.PageRouteInfo<LimerickRouterArgs> {
-  LimerickRouter({int? index, _i3.Key? key})
+class LimerickRouter extends _i3.PageRouteInfo<LimerickRouterArgs> {
+  LimerickRouter({int? index, _i4.Key? key})
       : super(LimerickRouter.name,
             path: '/limerick',
             args: LimerickRouterArgs(index: index, key: key),
@@ -144,7 +151,7 @@ class LimerickRouterArgs {
 
   final int? index;
 
-  final _i3.Key? key;
+  final _i4.Key? key;
 
   @override
   String toString() {
@@ -154,8 +161,8 @@ class LimerickRouterArgs {
 
 /// generated route for
 /// [_i1.ColorsWrapperPage]
-class ColorsWrapperRouter extends _i2.PageRouteInfo<void> {
-  const ColorsWrapperRouter({List<_i2.PageRouteInfo>? children})
+class ColorsWrapperRouter extends _i3.PageRouteInfo<void> {
+  const ColorsWrapperRouter({List<_i3.PageRouteInfo>? children})
       : super(ColorsWrapperRouter.name,
             path: '/colors', initialChildren: children);
 
@@ -164,16 +171,25 @@ class ColorsWrapperRouter extends _i2.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.NotFoundPage]
-class NotFoundRoute extends _i2.PageRouteInfo<void> {
+class NotFoundRoute extends _i3.PageRouteInfo<void> {
   const NotFoundRoute() : super(NotFoundRoute.name, path: '*');
 
   static const String name = 'NotFoundRoute';
 }
 
 /// generated route for
+/// [_i2.ColorsAuthenticatePage]
+class ColorsAuthenticateRouter extends _i3.PageRouteInfo<void> {
+  const ColorsAuthenticateRouter()
+      : super(ColorsAuthenticateRouter.name, path: 'authenticate');
+
+  static const String name = 'ColorsAuthenticateRouter';
+}
+
+/// generated route for
 /// [_i1.ColorsPage]
-class ColorsRouter extends _i2.PageRouteInfo<void> {
-  const ColorsRouter() : super(ColorsRouter.name, path: '');
+class ColorsRouter extends _i3.PageRouteInfo<void> {
+  const ColorsRouter() : super(ColorsRouter.name, path: 'ColorsRouter');
 
   static const String name = 'ColorsRouter';
 }

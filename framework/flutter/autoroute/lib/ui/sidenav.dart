@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
 import '../router/router.gr.dart';
 
@@ -31,11 +31,6 @@ class SideNavPage extends StatelessWidget {
                 router.pop();
               },
             ),
-            // Contains
-            // Passing Arguments
-            // Nested Routes
-            // Wrapping Routes
-            // Declarative Routing
             ListTile(
               title: const Text('Advanced'),
               onTap: () {

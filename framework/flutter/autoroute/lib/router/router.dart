@@ -24,16 +24,21 @@ import 'router.constants.dart';
       path: RoutePath.limerick,
     ),
     AutoRoute(
-      name: RouteName.colorsWrapper,
-      path: RoutePath.colorsWrapper,
+      name: RouteName.colors,
+      path: RoutePath.colors,
       page: ColorsWrapperPage,
       children: [
         AutoRoute(
-          name: RouteName.colors,
-          path: '',
+          name: RouteName.colorsAuthenticate,
+          path: RoutePath.colorsAuthenticate,
+          page: ColorsAuthenticatePage,
+        ),
+        AutoRoute(
+          name: RouteName.colorsHome,
+          path: RouteName.colorsHome,
           page: ColorsPage,
         ),
-        RedirectRoute(path: '*', redirectTo: ''),
+        RedirectRoute(path: '*', redirectTo: RouteName.colorsAuthenticate),
       ],
     ),
     AutoRoute(path: '*', page: NotFoundPage),
