@@ -38,13 +38,6 @@ class SideNavPage extends StatelessWidget {
                 router.pop();
               },
             ),
-            ListTile(
-              title: const Text('Page Transitions'),
-              onTap: () {
-                router.replace(const TransitionsRoute());
-                router.pop();
-              },
-            ),
           ],
         ),
       ),
