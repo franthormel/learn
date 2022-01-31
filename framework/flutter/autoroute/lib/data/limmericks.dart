@@ -1,4 +1,4 @@
-import '../models/index.dart' show Limerick;
+import '../models/index.dart';
 
 final limericks = <Limerick>[
   Limerick(

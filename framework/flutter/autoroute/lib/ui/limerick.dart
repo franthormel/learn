@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../models/index.dart' show Limerick;
-import '../data/index.dart' show limericks;
+import '../models/index.dart';
+import '../data/index.dart';
 
 class LimerickPage extends StatelessWidget {
   int? index;

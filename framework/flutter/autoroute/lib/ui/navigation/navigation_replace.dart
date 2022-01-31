@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../router/router.gr.dart';
-import '../../router/router.names.dart';
+import '../../router/router.constants.dart';
 
 import 'navigation_widget.dart';
 
@@ -30,12 +30,12 @@ class NavigationReplaceWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.push(
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               title: 'Replace',
               text: 'This page will be replaced in 3 seconds.',
               delayedCallback: () {
-                router.replace(LimerickRoute());
+                router.replace(LimerickRouter());
               },
             ),
           );
@@ -46,13 +46,13 @@ class NavigationReplaceWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.push(
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               title: 'Replace Named',
               text:
                   'This page will be replaced with a limerick page in 3 seconds.',
               delayedCallback: () {
-                router.replaceNamed(RoutePaths.limerick);
+                router.replaceNamed(RoutePath.limerick);
               },
             ),
           );
@@ -63,13 +63,13 @@ class NavigationReplaceWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.push(
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               title: 'Replace All',
               text:
                   'This page will be replaced with the navigation page in 3 seconds.',
               delayedCallback: () {
-                router.replaceAll([const NavigationRoute()]);
+                router.replaceAll([const NavigationRouter()]);
               },
             ),
           );

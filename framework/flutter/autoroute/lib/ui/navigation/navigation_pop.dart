@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../router/router.gr.dart';
-import '../../router/router.names.dart';
+import '../../router/router.constants.dart';
 
 import 'navigation_widget.dart';
 
@@ -30,7 +30,7 @@ class NavigationPopWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.push(
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               text: 'This page will be popped in 3 seconds.',
               title: 'Pop',
@@ -46,12 +46,12 @@ class NavigationPopWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.push(
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               text: 'This page will be popped in 3 seconds.',
               title: 'Pop & Push',
               delayedCallback: () {
-                router.popAndPush(LimerickRoute());
+                router.popAndPush(LimerickRouter());
               },
             ),
           );
@@ -62,19 +62,19 @@ class NavigationPopWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.push(
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               text: 'This page will be popped in 3 seconds.',
               title: 'Pop & Push All',
               delayedCallback: () {
                 router.popAndPushAll(
                   [
-                    DisplayRoute(
+                    DisplayRouter(
                       color: _kColor,
                       text: 'This is the first page',
                       title: 'Pop & Push All #1',
                     ),
-                    DisplayRoute(
+                    DisplayRouter(
                       color: _kColor,
                       text: 'This is the second page',
                       title: 'Pop & Push All #2',
@@ -90,7 +90,7 @@ class NavigationPopWidget extends StatelessWidget {
         child: const Text('Pop Until'),
         style: style,
         onPressed: () {
-          router.push(DisplayRoute(
+          router.push(DisplayRouter(
             color: _kColor,
             text: 'This page will be popped in 3 seconds.',
             title: 'Pop Until',
@@ -105,11 +105,11 @@ class NavigationPopWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.pushAll([
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               title: 'Pop Until Root #1',
             ),
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               text: 'This page will be popped in 3 seconds.',
               title: 'Pop Until Root #2',
@@ -125,14 +125,14 @@ class NavigationPopWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.pushAll([
-            LimerickRoute(),
-            DisplayRoute(
+            LimerickRouter(),
+            DisplayRouter(
               color: _kColor,
               text:
                   'This page will be popped until a limerick page is displayed in 3 seconds.',
               title: 'Pop Until Route with Name',
               delayedCallback: () {
-                router.popUntilRouteWithName(RoutePaths.limerick);
+                router.popUntilRouteWithName(RoutePath.limerick);
               },
             ),
           ]);

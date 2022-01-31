@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../router/router.gr.dart';
-import '../../router/router.names.dart';
+import '../../router/router.constants.dart';
 
 import 'navigation_widget.dart';
 
@@ -32,7 +32,7 @@ class NavigationNavigateWidget extends StatelessWidget {
         child: const Text('Navigate'),
         style: style,
         onPressed: () {
-          router.navigate(DisplayRoute(
+          router.navigate(DisplayRouter(
             color: _kColor,
             title: 'Navigate',
           ));
@@ -42,7 +42,7 @@ class NavigationNavigateWidget extends StatelessWidget {
         child: const Text('Navigate Named'),
         style: style,
         onPressed: () {
-          router.navigateNamed(RoutePaths.limerick);
+          router.navigateNamed(RoutePath.limerick);
         },
       ),
       ElevatedButton(
@@ -56,7 +56,7 @@ class NavigationNavigateWidget extends StatelessWidget {
           //
           // router.navigateAll([
           //   const LimerickRoute(),
-          //   DisplayRoute(),
+          //   DisplayRouter(),
           // ]);
         },
       ),

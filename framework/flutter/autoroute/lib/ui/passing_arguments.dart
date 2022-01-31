@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../router/router.gr.dart';
-import '../sidenav.dart';
-import '../../data/limmericks.dart';
+import '../router/router.gr.dart';
+import 'sidenav.dart';
+import '../data/limmericks.dart';
 
 class PassingArgumentsPage extends StatelessWidget {
   const PassingArgumentsPage({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class PassingArgumentsPage extends StatelessWidget {
                 final router = AutoRouter.of(context);
                 final scaffoldMessenger = ScaffoldMessenger.of(context);
                 final wordsCount = await router.push<int>(
-                  LimerickRoute(index: index),
+                  LimerickRouter(index: index),
                 );
 
                 if (wordsCount != null) {

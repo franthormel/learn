@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../router/router.gr.dart';
-import '../../router/router.names.dart';
+import '../../router/router.constants.dart';
 
 import 'navigation_widget.dart';
 
@@ -29,7 +29,7 @@ class NavigationPushWidget extends StatelessWidget {
         child: const Text('Push'),
         style: style,
         onPressed: () {
-          router.push(DisplayRoute(
+          router.push(DisplayRouter(
             color: _kColor,
             title: 'Push',
           ));
@@ -39,7 +39,7 @@ class NavigationPushWidget extends StatelessWidget {
         child: const Text('Push Named'),
         style: style,
         onPressed: () {
-          router.pushNamed(RoutePaths.limerick);
+          router.pushNamed(RoutePath.limerick);
         },
       ),
       ElevatedButton(
@@ -47,12 +47,12 @@ class NavigationPushWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.pushAll([
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               text: 'This is the first page',
               title: 'Push All #1',
             ),
-            DisplayRoute(
+            DisplayRouter(
               color: _kColor,
               text: 'This is the second page',
               title: 'Push All #2',
@@ -64,13 +64,13 @@ class NavigationPushWidget extends StatelessWidget {
         child: const Text('Pop & Push'),
         style: style,
         onPressed: () {
-          router.push(DisplayRoute(
+          router.push(DisplayRouter(
             color: _kColor,
             title: 'Pop & Push',
             text:
                 'This page will be popped and a new page will be pushed after 3 seconds.',
             delayedCallback: () {
-              router.popAndPush(LimerickRoute());
+              router.popAndPush(LimerickRouter());
             },
           ));
         },
@@ -79,19 +79,19 @@ class NavigationPushWidget extends StatelessWidget {
         child: const Text('Pop & Push All'),
         style: style,
         onPressed: () {
-          router.push(DisplayRoute(
+          router.push(DisplayRouter(
             color: _kColor,
             title: 'Pop & Push All',
             text:
                 'This page will be popped and multiple pages will be pushed after 3 seconds.',
             delayedCallback: () {
               router.popAndPushAll([
-                DisplayRoute(
+                DisplayRouter(
                   color: _kColor,
                   text: 'This is the first page',
                   title: 'Pop & Push All #1',
                 ),
-                DisplayRoute(
+                DisplayRouter(
                   color: _kColor,
                   text: 'This is the second page',
                   title: 'Pop & Push All #2',
@@ -105,14 +105,14 @@ class NavigationPushWidget extends StatelessWidget {
         child: const Text('Push & Pop Until'),
         style: style,
         onPressed: () {
-          router.push(DisplayRoute(
+          router.push(DisplayRouter(
             color: _kColor,
             title: 'Push & Pop Until',
             text:
                 'This page will be popped until a limerick page is displayed in 3 seconds.',
             delayedCallback: () {
               router.pushAndPopUntil(
-                LimerickRoute(),
+                LimerickRouter(),
                 predicate: (route) {
                   return route.isFirst;
                 },

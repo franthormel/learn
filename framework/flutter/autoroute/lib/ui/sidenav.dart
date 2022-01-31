@@ -27,17 +27,24 @@ class SideNavPage extends StatelessWidget {
             ListTile(
               title: const Text('Navigation'),
               onTap: () {
-                router.navigate(const NavigationRoute());
+                router.navigate(const NavigationRouter());
                 router.pop();
               },
             ),
             ListTile(
               title: const Text('Passing Arguments'),
               onTap: () {
-                router.navigate(const PassingArgumentsRoute());
+                router.navigate(const PassingArgumentsRouter());
                 router.pop();
               },
             ),
+            ListTile(
+              title: const Text('Nested Routes'),
+              onTap: () {
+                router.navigate(const BooksRouter());
+                router.pop();
+              },
+            )
           ],
         ),
       ),
