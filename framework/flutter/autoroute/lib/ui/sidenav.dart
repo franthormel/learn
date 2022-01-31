@@ -39,6 +39,7 @@ class SideNavPage extends StatelessWidget {
             ListTile(
               title: const Text('Advanced'),
               onTap: () {
+                router.navigate(const ColorsWrapperRouter());
                 router.pop();
               },
             )

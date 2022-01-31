@@ -1,10 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
-import '../ui/navigation/navigation.dart';
-
-import '../ui/display.dart';
-import '../ui/limerick.dart';
-import '../ui/not_found.dart';
+import '../ui/index.dart';
 
 import 'router.constants.dart';
 
@@ -27,19 +23,19 @@ import 'router.constants.dart';
       page: LimerickPage,
       path: RoutePath.limerick,
     ),
-    // AutoRoute(
-    //   name: RouteName.books,
-    //   path: RoutePath.books,
-    //   page: EmptyRouterPage,
-    //   children: [
-    //     AutoRoute(path: '', page: BooksPage),
-    //     AutoRoute(
-    //       name: RouteName.booksDetails,
-    //       path: RoutePath.bookId,
-    //       page: BookDetailsPage,
-    //     ),
-    //   ],
-    // ),
+    AutoRoute(
+      name: RouteName.colorsWrapper,
+      path: RoutePath.colorsWrapper,
+      page: ColorsWrapperPage,
+      children: [
+        AutoRoute(
+          name: RouteName.colors,
+          path: '',
+          page: ColorsPage,
+        ),
+        RedirectRoute(path: '*', redirectTo: ''),
+      ],
+    ),
     AutoRoute(path: '*', page: NotFoundPage),
   ],
 )
