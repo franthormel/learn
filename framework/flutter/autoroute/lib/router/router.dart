@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
 import '../ui/navigation/navigation.dart';
-import '../ui/passing_arguments.dart';
-import '../ui/nested_wrapped_routes/index.dart';
 
 import '../ui/display.dart';
 import '../ui/limerick.dart';
@@ -20,11 +18,6 @@ import 'router.constants.dart';
       path: RoutePath.navigation,
     ),
     AutoRoute(
-      name: RouteName.arguments,
-      page: PassingArgumentsPage,
-      path: RoutePath.arguments,
-    ),
-    AutoRoute(
       name: RouteName.display,
       page: DisplayPage,
       path: RoutePath.display,
@@ -34,19 +27,19 @@ import 'router.constants.dart';
       page: LimerickPage,
       path: RoutePath.limerick,
     ),
-    AutoRoute(
-      name: RouteName.books,
-      path: RoutePath.books,
-      page: EmptyRouterPage,
-      children: [
-        AutoRoute(path: '', page: BooksPage),
-        AutoRoute(
-          name: RouteName.booksDetails,
-          path: RoutePath.bookId,
-          page: BookDetailsPage,
-        ),
-      ],
-    ),
+    // AutoRoute(
+    //   name: RouteName.books,
+    //   path: RoutePath.books,
+    //   page: EmptyRouterPage,
+    //   children: [
+    //     AutoRoute(path: '', page: BooksPage),
+    //     AutoRoute(
+    //       name: RouteName.booksDetails,
+    //       path: RoutePath.bookId,
+    //       page: BookDetailsPage,
+    //     ),
+    //   ],
+    // ),
     AutoRoute(path: '*', page: NotFoundPage),
   ],
 )

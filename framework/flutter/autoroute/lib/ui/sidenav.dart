@@ -25,23 +25,20 @@ class SideNavPage extends StatelessWidget {
         child: ListView(
           children: [
             ListTile(
-              title: const Text('Navigation'),
+              title: const Text('Basic navigation'),
               onTap: () {
                 router.navigate(const NavigationRouter());
                 router.pop();
               },
             ),
+            // Contains
+            // Passing Arguments
+            // Nested Routes
+            // Wrapping Routes
+            // Declarative Routing
             ListTile(
-              title: const Text('Passing Arguments'),
+              title: const Text('Advanced'),
               onTap: () {
-                router.navigate(const PassingArgumentsRouter());
-                router.pop();
-              },
-            ),
-            ListTile(
-              title: const Text('Nested Routes'),
-              onTap: () {
-                router.navigate(const BooksRouter());
                 router.pop();
               },
             )

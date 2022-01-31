@@ -13,7 +13,7 @@ class NavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SideNavPage(
-      title: 'Navigation',
+      title: 'Basic navigation',
       child: ListView.separated(
         itemCount: navigationWidgets.length,
         itemBuilder: (context, index) => navigationWidgets[index],
