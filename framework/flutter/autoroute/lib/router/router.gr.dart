@@ -51,10 +51,6 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.ColorsWrapperPage());
     },
-    BottomNavbarRouter.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.BottomNavbarHomePage());
-    },
     NotFoundRoute.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.NotFoundPage());
@@ -65,19 +61,7 @@ class AppRouter extends _i2.RootStackRouter {
     },
     ColorsRouter.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.ColorsPage());
-    },
-    BottomNavbarTabAccountRouter.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.BottomNavBarTabPage());
-    },
-    BottomNavbarTabSearchRouter.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.BottomNavBarTabPage());
-    },
-    BottomNavbarTabSettingsRouter.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.BottomNavBarTabPage());
+          routeData: routeData, child: const _i1.ColorsListPage());
     }
   };
 
@@ -96,14 +80,6 @@ class AppRouter extends _i2.RootStackRouter {
               parent: ColorsWrapperRouter.name,
               redirectTo: 'ColorsAuthenticateRouter',
               fullMatch: true)
-        ]),
-        _i2.RouteConfig(BottomNavbarRouter.name, path: '/navbar', children: [
-          _i2.RouteConfig(BottomNavbarTabAccountRouter.name,
-              path: 'account', parent: BottomNavbarRouter.name),
-          _i2.RouteConfig(BottomNavbarTabSearchRouter.name,
-              path: 'search', parent: BottomNavbarRouter.name),
-          _i2.RouteConfig(BottomNavbarTabSettingsRouter.name,
-              path: 'settings', parent: BottomNavbarRouter.name)
         ]),
         _i2.RouteConfig(NotFoundRoute.name, path: '*')
       ];
@@ -194,16 +170,6 @@ class ColorsWrapperRouter extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.BottomNavbarHomePage]
-class BottomNavbarRouter extends _i2.PageRouteInfo<void> {
-  const BottomNavbarRouter({List<_i2.PageRouteInfo>? children})
-      : super(BottomNavbarRouter.name,
-            path: '/navbar', initialChildren: children);
-
-  static const String name = 'BottomNavbarRouter';
-}
-
-/// generated route for
 /// [_i1.NotFoundPage]
 class NotFoundRoute extends _i2.PageRouteInfo<void> {
   const NotFoundRoute() : super(NotFoundRoute.name, path: '*');
@@ -221,36 +187,9 @@ class ColorsAuthenticateRouter extends _i2.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i1.ColorsPage]
+/// [_i1.ColorsListPage]
 class ColorsRouter extends _i2.PageRouteInfo<void> {
   const ColorsRouter() : super(ColorsRouter.name, path: 'ColorsRouter');
 
   static const String name = 'ColorsRouter';
-}
-
-/// generated route for
-/// [_i1.BottomNavBarTabPage]
-class BottomNavbarTabAccountRouter extends _i2.PageRouteInfo<void> {
-  const BottomNavbarTabAccountRouter()
-      : super(BottomNavbarTabAccountRouter.name, path: 'account');
-
-  static const String name = 'BottomNavbarTabAccountRouter';
-}
-
-/// generated route for
-/// [_i1.BottomNavBarTabPage]
-class BottomNavbarTabSearchRouter extends _i2.PageRouteInfo<void> {
-  const BottomNavbarTabSearchRouter()
-      : super(BottomNavbarTabSearchRouter.name, path: 'search');
-
-  static const String name = 'BottomNavbarTabSearchRouter';
-}
-
-/// generated route for
-/// [_i1.BottomNavBarTabPage]
-class BottomNavbarTabSettingsRouter extends _i2.PageRouteInfo<void> {
-  const BottomNavbarTabSettingsRouter()
-      : super(BottomNavbarTabSettingsRouter.name, path: 'settings');
-
-  static const String name = 'BottomNavbarTabSettingsRouter';
 }

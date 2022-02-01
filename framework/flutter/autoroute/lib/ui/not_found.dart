@@ -7,9 +7,9 @@ class NotFoundPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SideNavPage(
+    return SideNavPage(
       title: 'Page not found',
-      child: Center(
+      child: const Center(
         child: Text('This resource is unavailable. 😔'),
       ),
     );

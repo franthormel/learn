@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../../state/colors.dart';
 
-class ColorsPage extends StatelessWidget {
-  const ColorsPage({Key? key}) : super(key: key);
+class ColorsListPage extends StatelessWidget {
+  const ColorsListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -7,9 +7,12 @@ class SideNavPage extends StatelessWidget {
   final String title;
   final Widget child;
 
-  const SideNavPage({
+  List<Widget>? actions;
+
+  SideNavPage({
     required this.title,
     required this.child,
+    this.actions,
     Key? key,
   }) : super(key: key);
 
@@ -20,6 +23,7 @@ class SideNavPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
+        actions: actions,
       ),
       drawer: Drawer(
         child: ListView(
@@ -35,13 +39,6 @@ class SideNavPage extends StatelessWidget {
               title: const Text('Advanced'),
               onTap: () {
                 router.navigate(const ColorsWrapperRouter());
-                router.pop();
-              },
-            ),
-            ListTile(
-              title: const Text('Bottom navigation bar'),
-              onTap: () {
-                router.push(const BottomNavbarRouter());
                 router.pop();
               },
             )

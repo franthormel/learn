@@ -12,7 +12,23 @@ class ColorsWrapperPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SideNavPage(
-      title: 'Advanced',
+      title: 'Wrapper Page',
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.help),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) => const AlertDialog(
+                title: Text('Advanced topics'),
+                content: Text(
+                  'Nested Routes, wrapping routes, and declarative routing.',
+                ),
+              ),
+            );
+          },
+        ),
+      ],
       child: ChangeNotifierProvider(
         create: (context) => ColorsProvider(),
         child: Consumer<ColorsProvider>(

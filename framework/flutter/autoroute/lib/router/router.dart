@@ -6,7 +6,6 @@ import 'router.constants.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    // Basic navigation
     AutoRoute(
       initial: true,
       name: RouteName.navigation,
@@ -23,12 +22,9 @@ import 'router.constants.dart';
       page: LimerickPage,
       path: RoutePath.limerick,
     ),
-    // Nested routes
-    // Wrapping routes
-    // Declarative routing
     AutoRoute(
-      name: RouteName.colors,
-      path: RoutePath.colors,
+      name: RouteName.colorsWrapper,
+      path: RoutePath.colorsWrapper,
       page: ColorsWrapperPage,
       children: [
         AutoRoute(
@@ -37,34 +33,11 @@ import 'router.constants.dart';
           page: ColorsAuthenticatePage,
         ),
         AutoRoute(
-          name: RouteName.colorsHome,
-          path: RouteName.colorsHome,
-          page: ColorsPage,
+          name: RouteName.colorsList,
+          path: RouteName.colorsList,
+          page: ColorsListPage,
         ),
         RedirectRoute(path: '*', redirectTo: RouteName.colorsAuthenticate),
-      ],
-    ),
-    // Bottom navigation bar
-    AutoRoute(
-      name: RouteName.bottomNavbarHome,
-      page: BottomNavbarHomePage,
-      path: RoutePath.bottomNavbarHome,
-      children: [
-        AutoRoute(
-          name: RouteName.bottomNavbarTabAccount,
-          page: BottomNavBarTabPage,
-          path: RoutePath.bottomNavbarTabAccount,
-        ),
-        AutoRoute(
-          name: RouteName.bottomNavbarTabSearch,
-          page: BottomNavBarTabPage,
-          path: RoutePath.bottomNavbarTabSearch,
-        ),
-        AutoRoute(
-          name: RouteName.bottomNavbarTabSettings,
-          page: BottomNavBarTabPage,
-          path: RoutePath.bottomNavbarTabSettings,
-        ),
       ],
     ),
     AutoRoute(path: '*', page: NotFoundPage),
