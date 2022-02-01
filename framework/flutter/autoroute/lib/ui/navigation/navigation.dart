@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../sidenav.dart';
-
+import '../side_nav.dart';
 import 'navigation_navigate.dart';
 import 'navigation_pop.dart';
 import 'navigation_push.dart';

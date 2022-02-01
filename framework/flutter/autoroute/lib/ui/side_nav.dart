@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
 import '../router/router.gr.dart';
 
@@ -35,6 +35,13 @@ class SideNavPage extends StatelessWidget {
               title: const Text('Advanced'),
               onTap: () {
                 router.navigate(const ColorsWrapperRouter());
+                router.pop();
+              },
+            ),
+            ListTile(
+              title: const Text('Bottom navigation bar'),
+              onTap: () {
+                router.push(const BottomNavbarRouter());
                 router.pop();
               },
             )

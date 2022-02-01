@@ -36,7 +36,7 @@ class ColorsAuthenticatePage extends StatelessWidget {
         ),
         SizedBox(
           width: double.infinity,
-          child: ElevatedButton.icon(
+          child: OutlinedButton.icon(
             icon: const Icon(Icons.login),
             label: const Text('Login'),
             onPressed: () {

@@ -1,9 +1,9 @@
-export 'navigation/navigation.dart';
-
+export 'bottom_navbar/bottom_navbar_home.dart';
+export 'bottom_navbar/bottom_navbar_tab.dart';
 export 'colors/colors.dart';
-export 'colors/colors_wrapper.dart';
 export 'colors/colors_authenticate.dart';
-
+export 'colors/colors_wrapper.dart';
 export 'display.dart';
 export 'limerick.dart';
+export 'navigation/navigation.dart';
 export 'not_found.dart';

@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../../router/router.gr.dart';
 import '../../router/router.constants.dart';
-
+import '../../router/router.gr.dart';
 import 'navigation_widget.dart';
 
 class NavigationNavigateWidget extends StatelessWidget {
@@ -24,9 +23,6 @@ class NavigationNavigateWidget extends StatelessWidget {
     final router = AutoRouter.of(context);
     final style = ElevatedButton.styleFrom(primary: _kColor);
 
-    // .navigate(BooksRoute())
-    //     .navigateNamed('/books')
-    //     .navigateAll([BooksRoute(), BookDetailsRoute()])
     return [
       ElevatedButton(
         child: const Text('Navigate'),
@@ -43,21 +39,6 @@ class NavigationNavigateWidget extends StatelessWidget {
         style: style,
         onPressed: () {
           router.navigateNamed(RoutePath.limerick);
-        },
-      ),
-      ElevatedButton(
-        child: const Text('Navigate All'),
-        style: style,
-        onPressed: () {
-          // TODO How does Navigate All work?
-          //
-          // The section below doesn't work as
-          // compared to pushAll().
-          //
-          // router.navigateAll([
-          //   const LimerickRoute(),
-          //   DisplayRouter(),
-          // ]);
         },
       ),
     ];

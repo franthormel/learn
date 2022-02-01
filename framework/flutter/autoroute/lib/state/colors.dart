@@ -6,6 +6,7 @@ class ColorsProvider with ChangeNotifier {
   final _favorites = <Color>[];
 
   bool get isAuthenticated => _authenticated;
+
   bool get isNotAuthenticated => !_authenticated;
 
   void login() {

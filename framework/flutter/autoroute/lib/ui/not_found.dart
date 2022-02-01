@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'sidenav.dart';
+import 'side_nav.dart';
 
 class NotFoundPage extends StatelessWidget {
   const NotFoundPage({Key? key}) : super(key: key);

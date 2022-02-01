@@ -18,7 +18,6 @@ class DisplayPage extends StatelessWidget {
 
   void executeCallback() {
     if (delayedCallback != null) {
-      // Delay calling the function by 3 seconds
       Timer(const Duration(seconds: 3), delayedCallback!);
     }
   }

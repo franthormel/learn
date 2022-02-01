@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 
-import '../../router/router.gr.dart';
 import '../../router/router.constants.dart';
-
+import '../../router/router.gr.dart';
 import 'navigation_widget.dart';
 
 class NavigationPushWidget extends StatelessWidget {
