@@ -87,6 +87,7 @@ class _SectionHeader extends StatelessWidget {
   const _SectionHeader({
     required this.title,
   });
+
   final String title;
 
   @override

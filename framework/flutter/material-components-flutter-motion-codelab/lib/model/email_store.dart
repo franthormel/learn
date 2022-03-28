@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/widgets.dart';
 import 'package:reply/settings_bottom_sheet.dart';
 
 import 'email_model.dart';
@@ -205,11 +204,17 @@ class EmailStore with ChangeNotifier {
   }
 
   bool get bottomDrawerVisible => _bottomDrawerVisible;
+
   int get currentlySelectedEmailId => _currentlySelectedEmailId;
+
   String get currentlySelectedInbox => _currentlySelectedInbox;
+
   bool get onMailView => _currentlySelectedEmailId > -1;
+
   bool get onCompose => _onCompose;
+
   ThemeMode get themeMode => _currentTheme;
+
   SlowMotionSpeedSetting get slowMotionSpeed => _currentSlowMotionSpeed;
 
   bool isEmailStarred(Email email) {

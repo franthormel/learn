@@ -74,6 +74,7 @@ class _SubjectRow extends StatefulWidget {
   const _SubjectRow({required this.subject});
 
   final String subject;
+
   @override
   _SubjectRowState createState() => _SubjectRowState();
 }
