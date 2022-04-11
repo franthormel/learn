@@ -1,10 +1,17 @@
+/**
+ * @file 2_factorial.c
+ * @author Francis Anthony (fcaboyo@gmail.com)
+ * @brief Write a function which returns the factorial of n using recursion and a function that computes 1 + 1/1! + 1/2! + ... + 1/n! using the previously written recursive factorial function.
+ * @version 0.1
+ * @date 2022-04-10
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
 #include <stdio.h>
 #define N 15
 
-/*
-Write a function, int factorial(int n), which returns n! (the factorial of n, i.e.,
-1 x 2 x 3 x ... x n) using the recursive algorithm.
-*/
 int factorial(int n)
 {
     if (n == 0 || n == 1)
@@ -13,10 +20,6 @@ int factorial(int n)
     return n * factorial(n - 1);
 }
 
-/*
-Using int factorial(int n) above, write a program to compute
-1 + 1/1! + 1/2! + ... + 1/11!.
-*/
 double factorialSum(int n)
 {
     if (n == 0)

@@ -1,12 +1,16 @@
+/**
+ * @file 1_sequence.c
+ * @author Francis Anthony (fcaboyo@gmail.com)
+ * @brief Recursive sequence function.
+ * @version 0.1
+ * @date 2022-04-10
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
 #include <stdio.h>
 #define N 20
-
-/*
-A sequence a(n) is given with the following rule:
-a(n+2) = -2a(n+1) + 3a(n)
-a(0) = 2
-a(1) = -1
-*/
 
 int sequence(int n)
 {
