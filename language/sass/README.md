@@ -10,4 +10,4 @@ sass input.sass output.css --watch
 
 You can omit the **--watch** flag if you do not want to use *hot-reloading*
 
-More flags are available [here](https://sass-lang.com/documentation/cli/dart-sass)
+More flags are available [here](https://sass-lang.com/documentation/cli/dart-sass).
