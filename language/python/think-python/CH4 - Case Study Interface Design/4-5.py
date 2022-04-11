@@ -1,3 +1,0 @@
-import turtle
-
-"""Archimedian Spiral"""

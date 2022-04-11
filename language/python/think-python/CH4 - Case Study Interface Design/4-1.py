@@ -1,3 +1,0 @@
-# Stack diagram
-
-# Refactored arc
