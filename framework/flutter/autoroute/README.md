@@ -1,5 +1,5 @@
-# [auto_route](https://pub.dev/packages/auto_route)
-Flutter example for using the **`auto_route`** package
+# auto_route
+Flutter example for using the [**`auto_route`**](https://pub.dev/packages/auto_route) package
 This example demonstrates the package's following features:
 
     Navigation
