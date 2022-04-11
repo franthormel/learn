@@ -1,5 +1,6 @@
 # Python 3: Pocket Primer Book
-## by James R. Parker
+## Book by James R. Parker
+This book is an effort to give a programmer sufficient knowledge of Python 3 to be able to work on their own projects. It is based on a much longer book that was intended for beginning programmers, and so most of the introductory material and basic computer science has been removed.
 
 * **Chapter 1 - Computers and Programming**
     1. [Rock, Paper and Scissors](CH1%20-%20Computers%20and%20Programming/rps.py)
