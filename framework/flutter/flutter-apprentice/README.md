@@ -1,5 +1,5 @@
 # Flutter Apprentice 
-##  by the raywenderlich Tutorial Team
+### Book by the raywenderlich Tutorial Team
 
 
 * ### [Chapter 2: Hello, Flutter](02-hello-flutter/recipes)
