@@ -55,3 +55,17 @@ if __FILE__ == $0
     mg.say_hi
     mg.say_bye
 end
+
+# Run using $ ruby ri20min.rb
+# => Hello World!
+# => Goodbye World. Come back soon!
+# => Hello Zeke!
+# => Goodbye Zeke. Come back soon!
+# => Hello Albert!
+# => Hello Brenda!
+# => Hello Charles!
+# => Hello Dave!
+# => Hello Engelbert!
+# => Goodbye Albert, Brenda, Charles, Dave, Engelbert. Come back soon!
+# => ...
+# => ...
