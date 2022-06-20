@@ -1,0 +1,14 @@
+{
+  "name": "jest-v28.1",
+  "version": "1.0.0",
+  "description": "Jest JS testing framework basics and examples.",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "jest",
+    "js",
+    "testing",
+    "framework"
+  ]
+}
