@@ -4,7 +4,7 @@
 
 import random
 
-print ("This program simulates rock paper scissors")
+print("This program simulates rock paper scissors")
 
 print("Choose either 'rock', 'paper' or 'scissors")
 
@@ -13,7 +13,7 @@ choices = ("rock", "paper", "scissors")
 computer = choices[random.randint(0, len(choices))]
 player = input()
 
-print ("Computer chose " + computer)
+print("Computer chose " + computer)
 print("You chose " + player)
 
 print("Result:")
@@ -25,7 +25,7 @@ if player == "rock":
         print("You lose!")
 elif player == "scissors":
     if computer == "paper":
-        print("You win!") 
+        print("You win!")
     else:
         print("You lose!")
 elif player == "paper":

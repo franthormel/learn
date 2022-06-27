@@ -18,7 +18,7 @@ print("Reverse: " + reverse)
 
 # This section uses string slicing
 # Example:
-# 
+#
 # name = "Apple Orange"
 #
 # name_splice_two = name[::2]

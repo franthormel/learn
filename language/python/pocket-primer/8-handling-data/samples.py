@@ -7,24 +7,24 @@ numbers = {}
 
 # Dictionary with Entries
 numbers = {
-    'zero' : 0,
-    'one' : 1,
-    'two' : 2,
-    'three' : 3,
-    'four' : 4,
-    'five' : 5,
-    'six' : 6,
-    'seven' : 7,
-    'eight' : 8,
-    'nine' : 9,
+    'zero': 0,
+    'one': 1,
+    'two': 2,
+    'three': 3,
+    'four': 4,
+    'five': 5,
+    'six': 6,
+    'seven': 7,
+    'eight': 8,
+    'nine': 9,
 }
 
 # Accessing an entry
 zero = numbers['zero']
 
-print(zero);
+print(zero)
 
-# Accessing an entry while 
+# Accessing an entry while
 # verifying if Key exsists
 try:
     number = numbers['number']
@@ -56,7 +56,8 @@ forecast = forecast.format("sunny", "rain")
 print(forecast)
 
 # Usual usage
-forecast = "Today is going to be {} and tomorrow it will {}".format('sunny', 'rain')
+forecast = "Today is going to be {} and tomorrow it will {}".format(
+    'sunny', 'rain')
 print(forecast)
 
 # Formatting specification
@@ -69,11 +70,11 @@ print(forecast)
 #  {[name]['!'conversion][':'specification]}
 #
 # *Default is left-aligned if no alignment specifier is provided
-# 
+#
 # {:10s} {:<10s}   Left-aligned with 10 whitespaces
 # {:>10s}          Right-aligned with 10 whitespaces
 # {:^10s}          Center-aligned with 10 whitespaces
-# 
+#
 # Samples
 #
 # {:5d}     An integer in a 5 character spaced right-alignment                  ' 1234'

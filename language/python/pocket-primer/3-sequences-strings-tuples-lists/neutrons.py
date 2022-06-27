@@ -10,7 +10,7 @@ elements = (
     "Helium", 2,
     "Potassium", 19,
     "Calcium", 20,
-    )
+)
 
 # Loop through the collection and execute the statement if it's an odd
 # index, so that atomic number can be easily accessed

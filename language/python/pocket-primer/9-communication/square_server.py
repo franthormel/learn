@@ -43,7 +43,7 @@ while True:
         number = int(data)
         print('Received ', number)
 
-        #Square the number and send it back to the client as bytes
+        # Square the number and send it back to the client as bytes
         data = str(number * number).encode()
         link.send(data)
 

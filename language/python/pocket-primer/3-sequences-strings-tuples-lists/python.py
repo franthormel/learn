@@ -5,8 +5,8 @@ file = input("Enter filename: ")
 
 l = len(file)
 
-# Check the file extension '.py' 
+# Check the file extension '.py'
 if file[l-3:l] == '.py':
     print("This is a Python file")
 else:
-    print("This is not a Python file") 
+    print("This is not a Python file")

@@ -1,18 +1,18 @@
-#Declaring strings
+# Declaring strings
 name = "John Doe"
 address = "121 Second Street"
 
-#Printing each character in a string
+# Printing each character in a string
 for i in range(0, len(name)):
     print(name[i], end="")
 
-#Comparing strings
+# Comparing strings
 "abcd" < "abce"
 "123" < "456"
 "ab" < "abc"
 " a" < "a"
 
-#Sample in comparing strings
+# Sample in comparing strings
 a = "A"
 b = "a"
 c = "1"
@@ -26,7 +26,7 @@ if a < c:
 else:
     print("Lowercase > numbers")
 
-#Compare if input() is lesser than the string 'Denver'
+# Compare if input() is lesser than the string 'Denver'
 city = input()
 denver = "Denver"
 
@@ -36,6 +36,3 @@ elif city > denver:
     print("The input is greater than " + denver + " alphabetically")
 else:
     print("The input is " + denver)
-
-
-

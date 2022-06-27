@@ -1,4 +1,4 @@
-# This program asks for user input and divides it accordingly 
+# This program asks for user input and divides it accordingly
 # given if it's a decimal or whole number
 
 number = input("Please enter a number: ")
@@ -14,4 +14,4 @@ except:
     # This single slash denotes default division (float)
     quotient = floating / 2
 
-print("The quotient of",number," is ",quotient)
+print("The quotient of", number, " is ", quotient)

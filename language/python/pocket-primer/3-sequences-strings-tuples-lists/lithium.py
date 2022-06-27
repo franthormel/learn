@@ -10,7 +10,7 @@ elements = (
     "Helium", 2,
     "Potassium", 19,
     "Calcium", 20,
-    )
+)
 
 # Assume that 'Lithium' is not in the collection so we set it to an
 # invalid index value

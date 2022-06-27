@@ -29,7 +29,7 @@ file_out.close()
 
 # READING BINARY
 
-# Read the binary file that 
+# Read the binary file that
 # was recently created
 file_in = open('integers', 'rb')
 
@@ -40,7 +40,7 @@ for k in range(0, total):
     try:
         numbers.fromfile(file_in, 1)
     except:
-        print("Error after",k,"reads")
+        print("Error after", k, "reads")
 
     print(numbers[k])
 

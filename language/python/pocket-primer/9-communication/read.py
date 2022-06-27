@@ -32,7 +32,7 @@ envelope, data = mailbox.select(FOLDER)
 # UNSEEN                        Messages that do not have \Seen flag set
 
 # Specifier on which data to extract from the email
-# 
+#
 # RFC822        Everything
 # RFC822.HEADER No body, header only
 # RFC822.TEXT   Body only
@@ -61,14 +61,14 @@ if envelope == 'OK':
         # Look for the string 'Subject' in the header
         k = subject.find('Subject')
 
-        # If it's present, extract the 
+        # If it's present, extract the
         # string to the next '\r'
         if k >= 0:
             subject = subject[k:]
-        
+
         k = subject.find('\\r')
         subject = subject[:k]
-        
+
         print(subject)
 else:
     print('No mailbox for ', FOLDER)

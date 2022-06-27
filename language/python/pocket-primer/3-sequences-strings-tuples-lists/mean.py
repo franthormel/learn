@@ -12,4 +12,4 @@ for number in numbers:
     count = count + 1
 
 # Display the mean
-print("The numbers ",numbers," has an average of ", total / count)
+print("The numbers ", numbers, " has an average of ", total / count)

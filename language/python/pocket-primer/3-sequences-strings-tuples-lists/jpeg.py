@@ -15,10 +15,10 @@ i = len(word)-5
 # Check if there's a suffix '.jpeg'
 if word[i:] == ".jpeg":
 
-    #Remove the suffix
+    # Remove the suffix
     word = word[0:i]
 
-    #Swap the suffix
+    # Swap the suffix
     word = word + ".jpg"
 
 print("New image filename: " + word)

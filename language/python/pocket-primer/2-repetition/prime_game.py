@@ -13,14 +13,15 @@ correct = 0
 # Display maximum number of attempts and name of this game
 print("--------------Prime Game--------------")
 print("\n")
-print("You have " ,kAttemptsMax, " attempts to guess if the random number prime or not");
+print("You have ", kAttemptsMax,
+      " attempts to guess if the random number prime or not")
 
 for i in range(0, kAttemptsMax):
     # Get randomized large number
     k = random.randint(kRandomMin, kRandomMax)
 
     # Get user input
-    print("Is the number ",k," a prime number? (Y)-Yes (N)-No")
+    print("Is the number ", k, " a prime number? (Y)-Yes (N)-No")
     answer = input()
 
     # Check if randomized large number is prime

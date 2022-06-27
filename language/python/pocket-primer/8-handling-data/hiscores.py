@@ -40,7 +40,8 @@ while True:
         month = month.decode('UTF-8')
         day = day.decode('UTF-8')
 
-        print("{:32s} {} {:4s} {:2s} {:2s}".format(name, score, year, month, day))
+        print("{:32s} {} {:4s} {:2s} {:2s}".format(
+            name, score, year, month, day))
     except:
         print("\n---EOF--")
         break
