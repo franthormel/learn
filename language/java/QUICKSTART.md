@@ -94,15 +94,9 @@ public class TransportManagement {
     }
 
     public void conductOperators() {
-        class BusConductor implements Conductor {
-            ...
-        }
-        class TrainConductor implements Conductor {
-            ...
-        }
-        class TramConductor implementes Conductor {
-            ...
-        }
+        class BusConductor implements Conductor { ... }
+        class TrainConductor implements Conductor { ... }
+        class TramConductor implementes Conductor { ... }
 
         BusConductor busConductor = new BusConductor();
         TrainCondcutor trainConductor = new TrainConductor();
@@ -140,7 +134,6 @@ param -> param.print(data);
 
 ```
 public class Wattage {
-    ...
     int watts;
 
     public int compare(Wattage other) {
@@ -176,6 +169,30 @@ Arrays.sort(wattages, a::compare);
 - Instance methods of an arbitrary object of a particular type `String::concat`
 - Constructors `Wattage::new`
 
+**Enums**
+
+Use for predefined constant values.
+
+`access_modifier enum_name { enum_values }`
+
+```
+public enum Direction{
+    NORTH (0),
+    EAST (90),
+    SOUTH (180),
+    WEST (270),
+
+    private final double degrees;
+
+    Direction(double degrees) {
+        this.degrees = degrees;
+    }
+}
+
+Direction current = NORTH;
+
+for(Direction d : Direction.values()) { ... }
+```
 
 ### 2. Inheritance
 
