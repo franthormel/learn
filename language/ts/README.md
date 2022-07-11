@@ -1,4 +1,4 @@
-# [Build JavaScript applications using TypeScript](https://docs.microsoft.com/en-us/learn/paths/build-javascript-applications-typescript/)
+# [TypeScript](https://docs.microsoft.com/en-us/learn/paths/build-javascript-applications-typescript/)
 
 TypeScript offers all the features of JavaScript, plus an additional layer on top of these - the TypeScript type system. 
 

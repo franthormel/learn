@@ -1,6 +1,4 @@
-# Sass
-
-This guide is taken from the [Sass Basics guide](https://sass-lang.com/guide)
+# [Sass](https://sass-lang.com/guide)
 
 To complile a Sass file to CSS use:
 
