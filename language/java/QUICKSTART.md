@@ -38,6 +38,8 @@ Parameter can be passed by value (primitive data types) or reference (objects an
 
 **Nested**
 
+Use when access to enclosing class is needed.
+
 - Logical grouping
 - Encapsulation
 - Readability and maintainability
@@ -57,6 +59,8 @@ class WashingMachine {
 **Local**
 
 Defined in a *block* and are usually found in a method's body.
+
+Use when multiple instances are required.
 
 ```
 public class ContactBook {
@@ -78,6 +82,10 @@ Unnamed local classes.
 Declare and instantiate a class simultaneously.
 
 Only use when a local class is needed once.
+
+Can access members of enclosing class.
+
+Can access local variables that are final or *effectively* final.
 
 ```
 public class TransportManagement {
@@ -109,9 +117,65 @@ Express single-method classes effectively.
 
 Treat functionality as a method argument or code as data.
 
+Encapsulates a unit of behaviour.
+
+A simple instance of a functional interface.
+
 Use when anonymous classes seem excessive.
 
-// TODO
+Can only be used when the compiler can determine the target type (expected method's data type).
+
+```
+() -> ;
+() -> { };
+param -> param.condition;
+param -> param.condition() && param.test();
+param -> {
+    return param.condition() && param.test();
+}
+param -> param.print(data);
+```
+
+**Method references**
+
+```
+public class Wattage {
+    ...
+    int watts;
+
+    public int compare(Wattage other) {
+        return other.watts - watts;
+    }
+
+    public static int compareWattages(Wattage a, Wattage b) {
+        return b.watts - a.watts;
+    }
+}
+
+// Method definition using a lambda expression
+Arrays.sort(
+    wattages,
+    (Wattage a, Wattage b) -> {
+        return b.watts - a.watts;
+    },
+);
+
+// Method invocation in a lambda expression
+Arrays.sort(
+    wattages,
+    (a, b) -> a.compare(b),
+)
+
+// Method reference
+Arrays.sort(wattages, Wattage::compareWattages);
+Arrays.sort(wattages, a::compare);
+```
+
+- Static methods `Wattage::compareWattages`
+- Instance methods of a particular object `a::compare`
+- Instance methods of an arbitrary object of a particular type `String::concat`
+- Constructors `Wattage::new`
+
 
 ### 2. Inheritance
 
