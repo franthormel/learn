@@ -456,3 +456,16 @@ interface FishProducer extends Producer {
     default int produce() { ... }
 }
 ```
+
+**Integrating default methods to existing libraries**
+
+This example sorts a deck of cards either by rank, suit, both, or reversed.
+
+Examine the files for an example:
+1. [Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html)
+2. [Comparable](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html)
+3. [SortByRankThenSuit](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/SortByRankThenSuit.java)
+4. [StandardDeck](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/StandardDeck.java)
+5. [PlayingCard](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/PlayingCard.java)
+6. [Card](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/Card.java)
+7. [Deck](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/Deck.java)
