@@ -14,7 +14,6 @@ public class Computer {
         power = !power;
     }
 }
-
 ```
 | Modifier    | Class | Package | Subclass | World |
 | ----------- | :---: | :-----: | :------: | :---: |
@@ -373,4 +372,87 @@ public @interface Alerts {
 @Alert(type="medium", message="Unauthorized access attempted");
 @Alert(message="Unidentified element sighted");
 public class GeneralAlert { ... }
+```
+
+### 8. Interfaces
+
+Group that determines how a part of a software interacts.
+
+Can only contain:
+1. Constants
+2. Method signatures
+3. Default methods*
+4. Static methods*
+5. Nested types
+
+**Bodies can be declared here*
+
+```
+interface Consumer {
+    void consume(Consumer other);
+}
+
+class Unit implementes Consumer {
+    ...
+    void consume(Consumer other) {
+        Unit otherUnit = (Unit)other;
+        ...
+    }
+}
+
+class Cell implements Consumer {
+    ...
+    void consume(Consumer other) {
+        Cell otherCell = (Cell)other;
+        ...
+    }
+}
+
+static void main() {
+    Unit unit = new Unit();
+    Cell cell = new Cell();
+
+    unit.consume(cell);
+    cell.consume(unit);
+}
+```
+
+**Default and static methods**
+
+Default and static methods can be used to be a method's initial definition.
+
+Use default methods to avoid rewriting interface implementations and add new functionality to existing libraries.
+
+Use static methods to implement an interface's utility functions.
+
+```
+interface Producer {
+    ...
+    static int transform() { ... }
+
+    default int produce() { ... }
+}
+```
+
+**Extending default methods**
+
+1. Default method uses *existing* definition.
+```
+interface AgriProducer extends Producer { }
+```
+
+2. Default method becomes abstract.
+```
+interface CommsProducer extends Producer { 
+    ...
+    int produce();
+}
+```
+
+3. Default method uses *new* defintion.
+```
+interface FishProducer extends Producer {
+    ...
+    default int produce() { ... }
+}
 ```
