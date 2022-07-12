@@ -304,3 +304,73 @@ String[][] jobTitles = {
     {"Engineering", "Concepts"}
 }
 ```
+
+### 7. Annotations
+
+Metadata about a program that is not part of the program itself.
+
+Used for:
+- Compiler information: detect errors or warning suppression.
+- compile-time and deployment-time processing: code auto-generation
+- run-time processing: examination
+
+```
+@interface Record {
+    String name();
+    int version() default 1;
+    String[] categories();
+}
+
+@Record {
+    name = "LiquidationReport"
+    version = 2,
+    categories = ["financial","management"]
+}
+class DataRecord() { ... }
+```
+
+**Predefined**
+
+- @Deprecated 
+- @Override
+- @SuppressWarnings
+- @SafeVarargs
+- @FunctionalInterface
+- @Retention
+- @Documented
+- @Target
+- @Inherited
+- @Repeatable
+
+For more definitions, see [this](https://docs.oracle.com/javase/tutorial/java/annotations/predefined.html).
+
+**Type annotations**
+
+Annotations can be used for checking *data types* and other things like null values.
+
+You can create your own or use others like the [Checker](https://checkerframework.org/) framework.
+
+**Repeating annotations**
+
+Multiple annotations can be used on the same element usually for different scenarios.
+
+```
+import java.lang.annotation.Repeatable;
+
+// 1. Define repeatable annotation
+@Repeatable() {
+    String type() default "low";
+    String message() default "None";
+}
+
+// 2. Declare container for repeatable
+public @interface Alerts {
+    Alert[] value();
+}
+
+
+@Alert(type="high", message="Intruder detected");
+@Alert(type="medium", message="Unauthorized access attempted");
+@Alert(message="Unidentified element sighted");
+public class GeneralAlert { ... }
+```
