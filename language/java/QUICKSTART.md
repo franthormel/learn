@@ -6,6 +6,8 @@ This guide is taken from the [The Java™ Tutorials ](https://docs.oracle.com/ja
 
 A class is a *blueprint* of an object.
 
+State stored in its fields.
+
 ```
 public class Computer {
     bool power = false;
@@ -211,36 +213,14 @@ public class Laptop extends Computer {
 }
 ```
 
-
-
-### 3. Interface
-
-Groups of *related methods* with empty bodies.
-
-```
-interface ComputingDevice {
-    public void togglePower() {}
-}
-
-public class Desktop implements ComputingDevice {
-    bool power = false;
-
-    public void togglePower() {
-        power = !power;
-    }
-}
-```
-
-
-
-### 4. Package
+### 3. Package
 
 A namespace that *organizes* a set of related classes and interfaces. 
 
 A collection of packages could be called a library.
 
 
-### 5. Variables
+### 4. Variables
 
 Used to store values.
 
@@ -291,7 +271,7 @@ long bytes = 0b11010010_01101001_10010100_10010010;
 ```
 
 
-### 6. Arrays
+### 5. Arrays
 
 A **container** holding a fixed number of values of a single type.
 
@@ -304,7 +284,7 @@ String[][] jobTitles = {
 }
 ```
 
-### 7. Annotations
+### 6. Annotations
 
 Metadata about a program that is not part of the program itself.
 
@@ -374,9 +354,11 @@ public @interface Alerts {
 public class GeneralAlert { ... }
 ```
 
-### 8. Interfaces
+### 7. Interfaces
 
 Group that determines how a part of a software interacts.
+
+Groups of *related methods* with empty bodies.
 
 Can only contain:
 1. Constants
@@ -392,8 +374,9 @@ interface Consumer {
     void consume(Consumer other);
 }
 
-class Unit implementes Consumer {
+class Unit implements Consumer {
     ...
+    // Interface as a Type
     void consume(Consumer other) {
         Unit otherUnit = (Unit)other;
         ...
@@ -402,6 +385,7 @@ class Unit implementes Consumer {
 
 class Cell implements Consumer {
     ...
+    // Interface as a Type
     void consume(Consumer other) {
         Cell otherCell = (Cell)other;
         ...
@@ -412,10 +396,12 @@ static void main() {
     Unit unit = new Unit();
     Cell cell = new Cell();
 
+    // Interface as a Type
     unit.consume(cell);
     cell.consume(unit);
 }
 ```
+
 
 **Default and static methods**
 
@@ -469,3 +455,68 @@ Examine the files for an example:
 5. [PlayingCard](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/PlayingCard.java)
 6. [Card](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/Card.java)
 7. [Deck](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/Deck.java)
+
+
+
+### 8. Inheritance
+
+Class derived from another class.
+
+All classes inherit from the `Object` class.
+
+Base, parent, super-class ==> Derived, child, extended class
+
+Inherit all members except constructors.
+
+```
+class Tool {
+    double mass;
+    ...
+    void use() { ... } 
+
+    void discard() { ... }
+}
+
+class MeasuringTool extends Tool {
+    double length;
+    ...
+    // New instance method
+    void measure() {
+        // Access inherited field
+        double output = super.mass * 10;
+
+        super.use();
+        ...
+    }
+
+    // Override
+    void use() { ... }
+
+    // Hide
+    static void discard()  { ... }
+}
+```
+
+**Casting**
+
+Hierarchy is *strictly* top to bottom, from parent to descendants.
+
+```
+class Rock { ... }
+class IgneousRock extends Rock { ... }
+
+// Implicit - compile-time
+Object rockObject = new Rock();
+
+// Won't work during compile
+IgneousRock igneousRock = rockObject;
+
+// Explicit - run-time
+IgneousRock igneousRock = (IgneousRock)rockObject;
+```
+
+**Multiple inheritance**
+
+Cannot inherit from multiple classes since classes store their state in their fields. *Multiple inheritance of state*.
+
+Can inherit from multiple interfaces since interfaces only only have methods and no constructors. *Multiple inheritance of implementation*.
