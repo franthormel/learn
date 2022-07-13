@@ -468,12 +468,15 @@ Base, parent, super-class ==> Derived, child, extended class
 
 Inherit all members except constructors.
 
+
 ```
+class Material { ... }
+class Textile extends Material { ... }
+
 class Tool {
     double mass;
     ...
-    void use() { ... } 
-
+    Material use() { ... }
     void discard() { ... }
 }
 
@@ -489,8 +492,10 @@ class MeasuringTool extends Tool {
         ...
     }
 
-    // Override
-    void use() { ... }
+    // Covariant return type
+    @Override
+    Textile use() { ... }
+
 
     // Hide
     static void discard()  { ... }
@@ -520,3 +525,69 @@ IgneousRock igneousRock = (IgneousRock)rockObject;
 Cannot inherit from multiple classes since classes store their state in their fields. *Multiple inheritance of state*.
 
 Can inherit from multiple interfaces since interfaces only only have methods and no constructors. *Multiple inheritance of implementation*.
+
+**Overrridng and hiding methods**
+
+Methods can be *overriden* using the `@Override` annotation on a method with the same signature as its ancestor class. Return types can be a *subtype* of the overriden method's return type, this is called the *covariant return type*.
+
+If an inheriting class declares a static method with the same signature from the superclass, the superclass's static method will be *hidden*.
+
+**Interface methods**
+
+The compiler prefers instance methods over default methods.
+```
+class Weather {
+    String describe() { ... }
+}
+
+interface Hot {
+    default String describe() { ... }
+}
+
+interface Humid {
+    default String describe() { ... }
+}
+
+class TropicalWeather extends Weather implements Hot, Humid { ... }
+
+TropicalWeather tropicalWeather = new TropicalWeather();
+tropicalWeather.describe(); // Weather.describe();
+```
+
+Overriden methods by others are ignored.
+
+```
+interface Layer {
+    default String describe() { ... }
+}
+
+interface MiddleLayer extends Layer {
+    default String describe() { ... }
+}
+
+interface OzoneLayer extends Layer { }
+
+class Stratosphere implements MiddleLayer, OzoneLayer { }
+
+Stratosphere stratosphere = new Stratosphere();
+stratosphere.describe() // MiddleLayer.describe();
+```
+
+Multiple independent methods that conflict must be explicitly overriden.
+
+```
+interface ArmouredVehicle {
+    default int operate() { ... }
+}
+
+interface HeavyVehicle {
+    default int operate() { ... }
+}
+
+class Tank implements ArmouredVehicle, HeavyVehicle {
+    int operate() {
+        ArmouredVehicle.super.operate();
+        HeavyVehicle.super.operate();
+    }
+}
+```
