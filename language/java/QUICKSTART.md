@@ -15,11 +15,10 @@ public class Computer {
 
 **Methods**
 ```
-public void draw();
+private void draw();
 public void draw(int x, int y);
-public void draw(Point... points);
+protected void draw(int... points);
 ```
-
 
 **Nested**
 ```
@@ -93,7 +92,7 @@ public class Wattage {
     }
 }
 
-// Method definition using a lambda expression
+// Method definition in a lambda expression
 Arrays.sort(
     wattages,
     (Wattage a, Wattage b) -> {
@@ -114,6 +113,10 @@ Arrays.sort(wattages, a::compare);
 
 **Enums**
 ```
+public enum Gender {
+    Male, Female
+}
+
 public enum Direction{
     NORTH (0),
     EAST (90),
@@ -132,323 +135,22 @@ Direction current = NORTH;
 for(Direction d : Direction.values()) { ... }
 ```
 
+
 ### 2. Inheritance
-
-Inherit *commonly used* state and behavior of other classes.
-
 ```
-public class Laptop extends Computer {
-    int battery = 0;
-
-    public void charge(int value) {
-        battery = battery + value;
-    }
-
-    public void use(int value) {
-        battery = battery - value;
-    }
-}
-```
-
-### 3. Package
-
-A namespace that *organizes* a set of related classes and interfaces. 
-
-A collection of packages could be called a library.
-
-
-### 4. Variables
-
-Used to store values.
-
-Fields are members of a class.
-
-All data types are assigned by the compiler with default values that is either or resembling zero (0) *except* for an object which is null and boolean which is false.
-
-**Types**
-
-```
-- Instance `int speed = 0;`
-- Static `static final int MAX_SPEED = 100;`
-- Local `int count = 0;`
-- Parameters `main(String[] args)`
-
-
-| Data type | Length          |
-| --------- | --------------- |
-| byte      | 8-bits          |
-| short     | 16-bits         |
-| int       | 32-bits         |
-| long      | 64-bits         |
-| float     | 32-bit IEEE 754 |
-| double    | 64-bit IEEE 754 |
-```
-
-**Literals**
-```
-int decimal = 26;
-int hexadecimal = 0x1A;
-int binary = 0b11010;
-
-double d = 123.4;
-double dSquared = 123.4e2;
-float f = 123.4f;
-```
-
-**Separating long numbers**
-
-Underscores can be used in Java SE 7 and later.
-
-```
-long phoneNumber = 1234_5678_9123_4567;
-float pi = 3.14_15F;
-long maximum = 0xFF_FFFF_FFFF_FFFF;
-long nybbles = 0b0010_0101;
-long bytes = 0b11010010_01101001_10010100_10010010;
-```
-
-
-### 5. Arrays
-
-A **container** holding a fixed number of values of a single type.
-
-Numbering begins at zero (0).
-
-```
-String[][] jobTitles = {
-    {"Chemical", "Mechanical", "Civil"},
-    {"Engineering", "Concepts"}
-}
-```
-
-### 6. Annotations
-
-Metadata about a program that is not part of the program itself.
-
-Used for:
-- Compiler information: detect errors or warning suppression.
-- compile-time and deployment-time processing: code auto-generation
-- run-time processing: examination
-
-```
-@interface Record {
-    String name();
-    int version() default 1;
-    String[] categories();
-}
-
-@Record {
-    name = "LiquidationReport"
-    version = 2,
-    categories = ["financial","management"]
-}
-class DataRecord() { ... }
-```
-
-**Predefined**
-
-- @Deprecated 
-- @Override
-- @SuppressWarnings
-- @SafeVarargs
-- @FunctionalInterface
-- @Retention
-- @Documented
-- @Target
-- @Inherited
-- @Repeatable
-
-For more definitions, see [this](https://docs.oracle.com/javase/tutorial/java/annotations/predefined.html).
-
-**Type annotations**
-
-Annotations can be used for checking *data types* and other things like null values.
-
-You can create your own or use others like the [Checker](https://checkerframework.org/) framework.
-
-**Repeating annotations**
-
-Multiple annotations can be used on the same element usually for different scenarios.
-
-```
-import java.lang.annotation.Repeatable;
-
-// 1. Define repeatable annotation
-@Repeatable() {
-    String type() default "low";
-    String message() default "None";
-}
-
-// 2. Declare container for repeatable
-public @interface Alerts {
-    Alert[] value();
-}
-
-
-@Alert(type="high", message="Intruder detected");
-@Alert(type="medium", message="Unauthorized access attempted");
-@Alert(message="Unidentified element sighted");
-public class GeneralAlert { ... }
-```
-
-### 7. Interfaces
-
-Group that determines how a part of a software interacts.
-
-Groups of *related methods* with empty bodies.
-
-Can only contain:
-1. Constants
-2. Method signatures
-3. Default methods*
-4. Static methods*
-5. Nested types
-
-**Bodies can be declared here*
-
-```
-interface Consumer {
-    void consume(Consumer other);
-}
-
-class Unit implements Consumer {
-    ...
-    // Interface as a Type
-    void consume(Consumer other) {
-        Unit otherUnit = (Unit)other;
-        ...
-    }
-}
-
-class Cell implements Consumer {
-    ...
-    // Interface as a Type
-    void consume(Consumer other) {
-        Cell otherCell = (Cell)other;
-        ...
-    }
-}
-
-static void main() {
-    Unit unit = new Unit();
-    Cell cell = new Cell();
-
-    // Interface as a Type
-    unit.consume(cell);
-    cell.consume(unit);
-}
-```
-
-
-**Default and static methods**
-
-Default and static methods can be used to be a method's initial definition.
-
-Use default methods to avoid rewriting interface implementations and add new functionality to existing libraries.
-
-Use static methods to implement an interface's utility functions.
-
-```
-interface Producer {
-    ...
-    static int transform() { ... }
-
-    default int produce() { ... }
-}
-```
-
-**Extending default methods**
-
-1. Default method uses *existing* definition.
-```
-interface AgriProducer extends Producer { }
-```
-
-2. Default method becomes abstract.
-```
-interface CommsProducer extends Producer { 
-    ...
-    int produce();
-}
-```
-
-3. Default method uses *new* defintion.
-```
-interface FishProducer extends Producer {
-    ...
-    default int produce() { ... }
-}
-```
-
-**Integrating default methods to existing libraries**
-
-This example sorts a deck of cards either by rank, suit, both, or reversed.
-
-Examine the files for an example:
-1. [Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html)
-2. [Comparable](https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html)
-3. [SortByRankThenSuit](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/SortByRankThenSuit.java)
-4. [StandardDeck](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/StandardDeck.java)
-5. [PlayingCard](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/PlayingCard.java)
-6. [Card](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/Card.java)
-7. [Deck](https://docs.oracle.com/javase/tutorial/java/IandI/examples/defaultmethods/Deck.java)
-
-
-
-### 8. Inheritance
-
-Class derived from another class.
-
-All classes inherit from the `Object` class.
-
-Base, parent, super-class ==> Derived, child, extended class
-
-Inherit all members except constructors.
-
-Use the `super` keyword to invoke the parent's constructor or members. *Constructor chaining*, a whole sequence of constructors invoked all the way back to the `Object` class, occurs when the parent constructor is called.
-
-```
-class Material { ... }
-class Textile extends Material { ... }
-
 class Tool {
-    double mass;
     ...
-    Material use() { ... }
     void discard() { ... }
 }
 
 class MeasuringTool extends Tool {
-    double length;
-
-    MeasuringTool() {
-        // Access parent constructor
-        super();
-    }
-
-    // New instance method
-    void measure() {
-        // Access parent members
-        double output = super.mass * 10;
-
-        super.use();
-        ...
-    }
-
-    // Covariant return type
+    ...
     @Override
-    Textile use() { ... }
-
-
-    // Hide
-    static void discard()  { ... }
+    void discard()  { ... }
 }
 ```
 
 **Casting**
-
-Hierarchy is *strictly* top to bottom, from parent to descendants.
-
 ```
 class Rock { ... }
 class IgneousRock extends Rock { ... }
@@ -464,25 +166,63 @@ IgneousRock igneousRock = (IgneousRock)rockObject;
 ```
 
 **Multiple inheritance**
+```
+class Building { ... }
+class Home { ... }
 
-Cannot inherit from multiple classes since classes store their state in their fields. *Multiple inheritance of state*.
+// Won't work during compile
+class House extends Building, Home { ... }
 
-Can inherit from multiple interfaces since interfaces only only have methods and no constructors. *Multiple inheritance of implementation*.
+interface Facility { ... }
+interface HealthRelated { ... }
 
-**Overrridng and hiding methods**
+// Will work
+class Hospital extends Building implements Facility, HealthRelated { ... }
+```
 
-Methods can be *overriden* using the `@Override` annotation on a method with the same signature as its ancestor class. Return types can be a *subtype* of the overriden method's return type, this is called the *covariant return type*.
+**Overriding and hiding methods**
 
-If an inheriting class declares a static method with the same signature from the superclass, the superclass's static method will be *hidden*.
+```
+class Material { ... }
+class Textile extends Material { ... }
 
-Compile-errors will be generated when:
-1. An instance method is declared as a static
-2. A static method is declared as an instance
-by an inheriting class if the two methods have the same signature.
+class Tool {
+    double mass;
+    
+    Tool(double mass) {
+        this.mass = mass;
+    }
+
+    Material use() { ... }
+    void discard() { ... }
+}
+
+class MeasuringTool extends Tool {
+    double length;
+
+    MeasuringTool(double mass, double length) {
+        super(mass);
+        this.length = length;
+    }
+
+    void measure() {
+        double output = super.mass * 10;
+
+        super.use();
+        ...
+    }
+
+    // Covariant return type
+    @Override
+    Textile use() { ... }
+
+
+    // Hidden
+    static void discard()  { ... }
+}
+```
 
 **Interface methods**
-
-The compiler prefers instance methods over default methods.
 ```
 class Weather {
     String describe() { ... }
@@ -501,9 +241,6 @@ class TropicalWeather extends Weather implements Hot, Humid { ... }
 TropicalWeather tropicalWeather = new TropicalWeather();
 tropicalWeather.describe(); // Weather.describe();
 ```
-
-Overriden methods by others are ignored.
-
 ```
 interface Layer {
     default String describe() { ... }
@@ -520,9 +257,6 @@ class Stratosphere implements MiddleLayer, OzoneLayer { }
 Stratosphere stratosphere = new Stratosphere();
 stratosphere.describe() // MiddleLayer.describe();
 ```
-
-Multiple independent methods that conflict must be explicitly overriden.
-
 ```
 interface ArmouredVehicle {
     default int operate() { ... }
@@ -542,14 +276,12 @@ class Tank implements ArmouredVehicle, HeavyVehicle {
 
 **Polymorphism**
 
-The ability of a subclass to determine their own behaviours and properties while being able to share a similar functionality with its parent class.
-
 ```
 class Matter { ... }
-class Solid { ... }
-class Liquid { ... }
-class Gas { ... }
-class Plasma { ... }
+class Solid extends Matter { ... }
+class Liquid extends Matter { ... }
+class Gas extends Matter { ... }
+class Plasma extends Matter { ... }
 
 Matter matter, solid, liquid, gas, plasma;
 
@@ -561,18 +293,22 @@ plasma = new Plasma();
 ```
 
 **Final classes and methods**
+```
+class ElectricalDevice {
+    ...
+    ElectricalDevice() {
+        startup();
+    }
 
-A class or method that is declared `final` could *not be overriden* by subclasses.
+    final void startup() { ... }
 
-Use on implementations that *should not be modified* and *critical* to the object's state.
+    final void shutdown() { ... }
+}
 
-Methods called in a constructor should be declared `final` since if they are inherited and modified they may produce undesirable results.
-
-Class should be declared `final` if an immutable class is needed.
+final class SolarDevice extends ElectricalDevice{ ... }
+```
 
 **Abstract classes and methods**
-
-Cannot be instantiated but only subclassed.
 
 ```
 abstract class Theory { }
@@ -582,7 +318,7 @@ abstract class Speculation {
     abstract void speculate();
 }
 
-abstract class WildSpeculation extends Speculation {}
+abstract class WildSpeculation extends Speculation { }
 
 class GuidedSpeculation extends Speculation {
     void speculate() { ... }
@@ -597,34 +333,171 @@ class GuidedSpeculation extends Speculation {
 | Methods   | Can be public, protected, or private | Always public           |
 | Extension | Extends only one (1)                 | Multiple                |
 
-Use `abstract` class:
-- Between *closely related* classes
-- Subclasses with *multiple common* methods
-- Allow *non-static and non-final* fields
 
-Use `interface`s:
-- *Unrelated* classes
-- *Behaviour* specification but not implementation
-- *Multiple* implementations
+### 3. Interfaces
+```
+interface LiquidContainer {
+    void empty();
+    void fill();
+}
 
-Non-abstract classes that extend abstract classes *must* implement all the abstract methods.
+public class WaterBottle implements LiquidContainer { 
+    void empty() { ... }
+    void fill() { ... }
+}
+```
 
-### 9. Numbers and Strings
+**Interface as a Type**
 
-**Formatting print output**
+```
+interface Consumer {
+    void consume(Consumer other);
+}
 
-Use the `PrintStream.format()` method to format print outputs like this:
+class Unit implements Consumer {
+    ...
+    void consume(Consumer other) {
+        Unit otherUnit = (Unit)other;
+        ...
+    }
+}
+
+class Cell implements Consumer {
+    ...
+    void consume(Consumer other) {
+        Cell otherCell = (Cell)other;
+        ...
+    }
+}
+
+static void main() {
+    Unit unit = new Unit();
+    Cell cell = new Cell();
+
+    unit.consume(cell);
+    cell.consume(unit);
+}
+```
+
+
+**Default and static methods**
+```
+interface Producer {
+    ...
+    static int transform() { ... }
+
+    default int produce() { ... }
+}
+```
+
+**Extending default methods**
+```
+// Existing definition
+interface AgriProducer extends Producer { }
+
+// Becomes abstract
+interface CommsProducer extends Producer { 
+    ...
+    int produce();
+}
+
+// New definition
+interface FishProducer extends Producer {
+    ...
+    default int produce() { ... }
+}
+```
+
+### 4. Package
+```
+package operators;
+
+class Operator { ... }
+class MedicalOperator extends Operator { ... }
+```
+
+### 5. Variables
+```
+int decimal = 26;
+int hexadecimal = 0x1A;
+int binary = 0b11010;
+
+double d = 123.4;
+double dSquared = 123.4e2;
+float f = 123.4f;
+
+static void main(String[] args) {
+    String output = "Good morning!";
+}
+```
+
+**Separating long numbers**
+
+```
+long phoneNumber = 1234_5678_9123_4567;
+float pi = 3.14_15F;
+long maximum = 0xFF_FFFF_FFFF_FFFF;
+long nybbles = 0b0010_0101;
+long bytes = 0b11010010_01101001_10010100_10010010;
+```
+
+
+### 6. Arrays
+```
+int[] numbers = { 1, 3, 5, 7, 9 };
+
+String[][] jobTitles = {
+    {"Chemical", "Mechanical", "Civil"},
+    {"Engineering", "Concepts"}
+}
+```
+
+### 7. Annotations
+```
+@interface Record {
+    String name();
+    int version() default 1;
+    String[] categories();
+}
+
+@Record {
+    name = "LiquidationReport"
+    version = 2,
+    categories = ["financial","management"]
+}
+
+class DataRecord() { ... }
+```
+
+**Repeating annotations**
+```
+import java.lang.annotation.Repeatable;
+
+@Repeatable() {
+    String type() default "low";
+    String message() default "None";
+}
+
+public @interface Alerts {
+    Alert[] value();
+}
+
+@Alert(type="high", message="Intruder detected");
+@Alert(type="medium", message="Unauthorized access attempted");
+@Alert(message="Unidentified element sighted");
+public class GeneralAlert { ... }
+```
+
+### 8. Numbers and Strings
 ```
 int apples = 10;
 
 System.out.format("I have %d apples.", i);
 ```
-
-Use the `DecimalFormat` class to format the display of decimals like this:
+**Formatting print output**
 ```
 DecimalFormat formatter = new DecimalFormat(pattern);
 String output = formatter.format(input);
-```
 
 | Input      | Pattern      | Output      |
 | ---------- | ------------ | ----------- |
@@ -632,11 +505,9 @@ String output = formatter.format(input);
 | 123456.789 | ###.##       | 123456.79   |
 | 123.78     | 000000.000   | 000123.780  |
 | 12345.67   | $###,###.### | $12,345.67  |
+```
 
 **Strings**
-
-Sequences of characters.
-
 ```
 char a = 'a';
 char b = '\u0392';
@@ -644,46 +515,4 @@ char[] text =  { 'a', 'p', 'p', 'l', 'e', 's' };
 
 String apples = new String(text);
 String oranges  = "oranges";
-
-int length = apples.length();
-
-String fruits = apples.concat(oranges);
-String greetings = "I have a lot of " + apples;
-
-String output = String.format("%s and %s", apples, oranges);
-
-char c = apples.charAt(0);
-
-String subtext = output.substring(0, 3);
 ```
-
-Use the `StringBuilder` class if you want to perform any of the following: `append`, `delete`, `insert`, `replace`, or  `reverse`. The `StringBuilder` class has an initial capacity of 16.
-
-
-**Autoboxing and Unboxing**
-
-Automatic conversion between wrapper classes and primitive type and vice-versa.
-
-| Wrapper  class | Primitive data type |
-| -------------- | ------------------- |
-| Number         | `abstract` class    |
-| Byte           | byte                |
-| Short          | short               |
-| Integer        | int                 |
-| Long           | long                |
-| Float          | float               |
-| Double         | double              |
-| Boolean        | boolean             |
-| Character      | char                |
-
-Use wrapper classes when:
-1. Method arguments require Objects
-2. Determining upper `MAX_VALUE` and lower `MIN_VALUE` bound values for a data type
-3. Conversion between data types: String to int, double, and vice-versa.
-
-Has several helper methods that the `Number` class implement like `value`, `compareTo`, `equals`, `decode`, `parse`, `toString`, and `valueOf`.
-
-| Name     | Description          | Example              |
-| -------- | -------------------- | -------------------- |
-| Boxing   | Primitive to wrapper | `int` to `Integer`   |
-| Unboxing | Wrapper to primitive | `Double` to `double` |
