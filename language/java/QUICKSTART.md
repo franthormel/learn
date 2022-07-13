@@ -673,3 +673,51 @@ Use `interface`s:
 Non-abstract classes that extend abstract classes *must* implement all the abstract methods.
 
 ### 9. Numbers and Strings
+
+| Wrapper  class | Primitive data type |
+| -------------- | ------------------- |
+| Number         | `abstract` class    |
+| Byte           | byte                |
+| Short          | short               |
+| Integer        | int                 |
+| Long           | long                |
+| Float          | float               |
+| Double         | double              |
+| Boolean        | boolean             |
+| Character      | char                |
+
+Use wrapper classes when:
+1. Method arguments require Objects
+2. Determining upper `MAX_VALUE` and lower `MIN_VALUE` bound values for a data type
+3. Conversion between data types: String to int, double, and vice-versa.
+
+Has several helper methods that the `Number` class implement like `value`, `compareTo`, `equals`, `decode`, `parse`, `toString`, and `valueOf`.
+
+**Formatting print output**
+
+Use the `PrintStream.format()` method to format print outputs like this:
+```
+int apples = 10;
+
+System.out.format("I have %d apples.", i);
+```
+
+Use the `DecimalFormat` class to format the display of decimals like this:
+```
+DecimalFormat formatter = new DecimalFormat(pattern);
+String output = formatter.format(input);
+```
+
+| Input      | Pattern      | Output      |
+| ---------- | ------------ | ----------- |
+| 123456.789 | ###,###.###  | 123,456.789 |
+| 123456.789 | ###.##       | 123456.79   |
+| 123.78     | 000000.000   | 000123.780  |
+| 12345.67   | $###,###.### | $12,345.67  |
+
+
+
+| Name     | Description                         |
+| -------- | ----------------------------------- |
+| Boxing   | Given primitive but object expected |
+| Unboxing | Given object but primitive expected |
