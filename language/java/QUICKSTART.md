@@ -674,25 +674,6 @@ Non-abstract classes that extend abstract classes *must* implement all the abstr
 
 ### 9. Numbers and Strings
 
-| Wrapper  class | Primitive data type |
-| -------------- | ------------------- |
-| Number         | `abstract` class    |
-| Byte           | byte                |
-| Short          | short               |
-| Integer        | int                 |
-| Long           | long                |
-| Float          | float               |
-| Double         | double              |
-| Boolean        | boolean             |
-| Character      | char                |
-
-Use wrapper classes when:
-1. Method arguments require Objects
-2. Determining upper `MAX_VALUE` and lower `MIN_VALUE` bound values for a data type
-3. Conversion between data types: String to int, double, and vice-versa.
-
-Has several helper methods that the `Number` class implement like `value`, `compareTo`, `equals`, `decode`, `parse`, `toString`, and `valueOf`.
-
 **Formatting print output**
 
 Use the `PrintStream.format()` method to format print outputs like this:
@@ -715,9 +696,57 @@ String output = formatter.format(input);
 | 123.78     | 000000.000   | 000123.780  |
 | 12345.67   | $###,###.### | $12,345.67  |
 
+**Strings**
+
+Sequences of characters.
+
+```
+char a = 'a';
+char b = '\u0392';
+char[] text =  { 'a', 'p', 'p', 'l', 'e', 's' };
+
+String apples = new String(text);
+String oranges  = "oranges";
+
+int length = apples.length();
+
+String fruits = apples.concat(oranges);
+String greetings = "I have a lot of " + apples;
+
+String output = String.format("%s and %s", apples, oranges);
+
+char c = apples.charAt(0);
+
+String subtext = output.substring(0, 3);
+```
+
+Use the `StringBuilder` class if you want to perform any of the following: `append`, `delete`, `insert`, `replace`, or  `reverse`. The `StringBuilder` class has an initial capacity of 16.
 
 
-| Name     | Description                         |
-| -------- | ----------------------------------- |
-| Boxing   | Given primitive but object expected |
-| Unboxing | Given object but primitive expected |
+**Autoboxing and Unboxing**
+
+Automatic conversion between wrapper classes and primitive type and vice-versa.
+
+| Wrapper  class | Primitive data type |
+| -------------- | ------------------- |
+| Number         | `abstract` class    |
+| Byte           | byte                |
+| Short          | short               |
+| Integer        | int                 |
+| Long           | long                |
+| Float          | float               |
+| Double         | double              |
+| Boolean        | boolean             |
+| Character      | char                |
+
+Use wrapper classes when:
+1. Method arguments require Objects
+2. Determining upper `MAX_VALUE` and lower `MIN_VALUE` bound values for a data type
+3. Conversion between data types: String to int, double, and vice-versa.
+
+Has several helper methods that the `Number` class implement like `value`, `compareTo`, `equals`, `decode`, `parse`, `toString`, and `valueOf`.
+
+| Name     | Description          | Example              |
+| -------- | -------------------- | -------------------- |
+| Boxing   | Primitive to wrapper | `int` to `Integer`   |
+| Unboxing | Wrapper to primitive | `Double` to `double` |
