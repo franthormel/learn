@@ -468,6 +468,7 @@ Base, parent, super-class ==> Derived, child, extended class
 
 Inherit all members except constructors.
 
+Use the `super` keyword to invoke the parent's constructor or members. *Constructor chaining*, a whole sequence of constructors invoked all the way back to the `Object` class, occurs when the parent constructor is called.
 
 ```
 class Material { ... }
@@ -482,10 +483,15 @@ class Tool {
 
 class MeasuringTool extends Tool {
     double length;
-    ...
+
+    MeasuringTool() {
+        // Access parent constructor
+        super();
+    }
+
     // New instance method
     void measure() {
-        // Access inherited field
+        // Access parent members
         double output = super.mass * 10;
 
         super.use();
@@ -590,4 +596,24 @@ class Tank implements ArmouredVehicle, HeavyVehicle {
         HeavyVehicle.super.operate();
     }
 }
+```
+
+**Polymorphism**
+
+The ability of a subclass to determine their own behaviours and properties while being able to share a similar functionality with its parent class.
+
+```
+class Matter { ... }
+class Solid { ... }
+class Liquid { ... }
+class Gas { ... }
+class Plasma { ... }
+
+Matter matter, solid, liquid, gas, plasma;
+
+matter = new Matter();
+solid = new Solid();
+liquid = new Liquid();
+gas = new Gas();
+plasma = new Plasma();
 ```
