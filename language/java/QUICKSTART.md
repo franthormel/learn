@@ -538,6 +538,11 @@ Methods can be *overriden* using the `@Override` annotation on a method with the
 
 If an inheriting class declares a static method with the same signature from the superclass, the superclass's static method will be *hidden*.
 
+Compile-errors will be generated when:
+1. An instance method is declared as a static
+2. A static method is declared as an instance
+by an inheriting class if the two methods have the same signature.
+
 **Interface methods**
 
 The compiler prefers instance methods over default methods.
@@ -617,3 +622,54 @@ liquid = new Liquid();
 gas = new Gas();
 plasma = new Plasma();
 ```
+
+**Final classes and methods**
+
+A class or method that is declared `final` could *not be overriden* by subclasses.
+
+Use on implementations that *should not be modified* and *critical* to the object's state.
+
+Methods called in a constructor should be declared `final` since if they are inherited and modified they may produce undesirable results.
+
+Class should be declared `final` if an immutable class is needed.
+
+**Abstract classes and methods**
+
+Cannot be instantiated but only subclassed.
+
+```
+abstract class Theory { }
+abstract void theorize();
+
+abstract class Speculation {
+    abstract void speculate();
+}
+
+abstract class WildSpeculation extends Speculation {}
+
+class GuidedSpeculation extends Speculation {
+    void speculate() { ... }
+}
+```
+
+**Abstract classes vs Interfaces**
+
+| Type      | `abstract` class                     | `interface`             |
+| --------- | ------------------------------------ | ----------------------- |
+| Fields    | Can be non-static and final          | Always static and final |
+| Methods   | Can be public, protected, or private | Always public           |
+| Extension | Extends only one (1)                 | Multiple                |
+
+Use `abstract` class:
+- Between *closely related* classes
+- Subclasses with *multiple common* methods
+- Allow *non-static and non-final* fields
+
+Use `interface`s:
+- *Unrelated* classes
+- *Behaviour* specification but not implementation
+- *Multiple* implementations
+
+Non-abstract classes that extend abstract classes *must* implement all the abstract methods.
+
+### 9. Numbers and Strings
