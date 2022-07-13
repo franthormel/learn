@@ -16,8 +16,8 @@ public class Computer {
 **Methods**
 ```
 private void draw();
-public void draw(int x, int y);
-protected void draw(int... points);
+public void draw(int x, int y) { ... }
+protected void draw(int... points) { ... }
 ```
 
 **Nested**

@@ -6,7 +6,7 @@ This guide is taken from the [The Java™ Tutorials ](https://docs.oracle.com/ja
 
 A class is a *blueprint* of an object.
 
-State stored in its fields.
+State is stored in its fields.
 
 ```
 public class Computer {
@@ -20,22 +20,21 @@ public class Computer {
 | Modifier    | Class | Package | Subclass | World |
 | ----------- | :---: | :-----: | :------: | :---: |
 | public      |   Y   |    Y    |    Y     |   Y   |
-| protected   |   Y   |    Y    |    Y     |   N   |
-| no modifier |   Y   |    Y    |    N     |   N   |
-| private     |   Y   |    N    |    N     |   N   |
+| protected   |   Y   |    Y    |    Y     |       |
+| no modifier |   Y   |    Y    |          |       |
+| private     |   Y   |         |          |       |
 
 **Method**
 
-`access_modifier return_type method_name(method_parameters) {}` 
+`access_modifier return_type method_name(method_parameters) { }` 
 
 ```
 private void draw();
-public void draw(int x, int y);
-protected void draw(int... points);
+public void draw(int x, int y) { ... }
+protected void draw(int... points) { ... }
 ```
 
 A parameter can be passed by value (primitive data types) or reference (objects and arrays).
-
 
 **Nested**
 
@@ -268,8 +267,8 @@ Methods can be *overridden* using the `@Override` annotation on a method with th
 If an inheriting class declares a static method with the same signature from the superclass, the superclass's static method will be *hidden*.
 
 Compile errors will be generated when an inheriting class and the methods have the same signature if:
-1. An instance method is declared as a static
-2. A static method is declared as an instance
+1. A parent's instance method is declared as a static method in the child class.
+2. A parent's static method is declared as an instance method in the child class.
 
 ```
 class Material { ... }
@@ -597,14 +596,18 @@ All data types are assigned by the compiler with default values that is either o
 
 **Types**
 
-| Data type | Length          |
-| --------- | --------------- |
-| byte      | 8-bits          |
-| short     | 16-bits         |
-| int       | 32-bits         |
-| long      | 64-bits         |
-| float     | 32-bit IEEE 754 |
-| double    | 64-bit IEEE 754 |
+| Data type | Length          | Default alues |
+| --------- | --------------- | ------------- |
+| byte      | 8-bits          | 0             |
+| short     | 16-bits         | 0             |
+| int       | 32-bits         | 0             |
+| long      | 64-bits         | 0L            |
+| float     | 32-bit IEEE 754 | 0.0f          |
+| double    | 64-bit IEEE 754 | 0.0d          |
+| char      | 32-bits         | '\u0000'      |
+| String    | 32-bits         | null          |
+| Object    | -               | null          |
+| boolean   | true/false      | false         |
 
 - Instance `int speed = 0;`
 - Static `static final int MAX_SPEED = 100;`
@@ -677,16 +680,16 @@ class DataRecord() { ... }
 
 **Predefined**
 
-- @Deprecated 
-- @Override
-- @SuppressWarnings
-- @SafeVarargs
-- @FunctionalInterface
-- @Retention
-- @Documented
-- @Target
-- @Inherited
-- @Repeatable
+- `@Deprecated `
+- `@Override`
+- `@SuppressWarnings`
+- `@SafeVarargs`
+- `@FunctionalInterface`
+- `@Retention`
+- `@Documented`
+- `@Target`
+- `@Inherited`
+- `@Repeatable`
 
 **Type annotations**
 
@@ -777,8 +780,6 @@ Use wrapper classes when:
 1. Method arguments require Objects
 2. Determining the upper `MAX_VALUE` and lower `MIN_VALUE` bound values for a data type
 3. Conversion between data types: String to int, double, and vice-versa.
-
-Has several helper methods that the `Number` class implement like `value`, `compareTo`, `equals`, `decode`, `parse`, `toString`, and `valueOf`.
 
 | Name     | Description          | Example              |
 | -------- | -------------------- | -------------------- |
