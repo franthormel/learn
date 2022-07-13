@@ -1,8 +1,13 @@
-# Java - Quickstart
+# Java - Language
 
 This guide is taken from the [The Java™ Tutorials ](https://docs.oracle.com/javase/tutorial/java/)
 
 ### 1. Class
+
+A class is a *blueprint* of an object.
+
+State stored in its fields.
+
 ```
 public class Computer {
     bool power = false;
@@ -12,16 +17,34 @@ public class Computer {
     }
 }
 ```
+| Modifier    | Class | Package | Subclass | World |
+| ----------- | :---: | :-----: | :------: | :---: |
+| public      |   Y   |    Y    |    Y     |   Y   |
+| protected   |   Y   |    Y    |    Y     |   N   |
+| no modifier |   Y   |    Y    |    N     |   N   |
+| private     |   Y   |    N    |    N     |   N   |
 
-**Methods**
+**Method**
+
+`access_modifier return_type method_name(method_parameters) {}` 
+
 ```
 public void draw();
 public void draw(int x, int y);
 public void draw(Point... points);
 ```
 
+Parameter can be passed by value (primitive data types) or reference (objects and arrays).
+
 
 **Nested**
+
+Use when access to enclosing class is needed.
+
+- Logical grouping
+- Encapsulation
+- Readability and maintainability
+
 ```
 class WashingMachine {
     class LaundryLoad {
@@ -35,6 +58,11 @@ class WashingMachine {
 ```
 
 **Local**
+
+Defined in a *block* and are usually found in a method's body.
+
+Use when multiple instances are required.
+
 ```
 public class ContactBook {
     ...
@@ -49,6 +77,17 @@ public class ContactBook {
 ```
 
 **Anonymous**
+
+Unnamed local classes.
+
+Declare and instantiate a class simultaneously.
+
+Only use when a local class is needed once.
+
+Can access members of enclosing class.
+
+Can access local variables that are final or *effectively* final.
+
 ```
 public class TransportManagement {
     interface Conductor {
@@ -68,6 +107,19 @@ public class TransportManagement {
 ```
 
 **Lambda expressions**
+
+Express single-method classes effectively.
+
+Treat functionality as a method argument or code as data.
+
+Encapsulates a unit of behaviour.
+
+A simple instance of a functional interface.
+
+Use when anonymous classes seem excessive.
+
+Can only be used when the compiler can determine the target type (expected method's data type).
+
 ```
 () -> ;
 () -> { };
@@ -80,6 +132,7 @@ param -> param.print(data);
 ```
 
 **Method references**
+
 ```
 public class Wattage {
     int watts;
@@ -112,7 +165,17 @@ Arrays.sort(wattages, Wattage::compareWattages);
 Arrays.sort(wattages, a::compare);
 ```
 
+- Static methods `Wattage::compareWattages`
+- Instance methods of a particular object `a::compare`
+- Instance methods of an arbitrary object of a particular type `String::concat`
+- Constructors `Wattage::new`
+
 **Enums**
+
+Use for predefined constant values.
+
+`access_modifier enum_name { enum_values }`
+
 ```
 public enum Direction{
     NORTH (0),
