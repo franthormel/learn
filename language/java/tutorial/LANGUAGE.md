@@ -1027,3 +1027,51 @@ Extender.extend("Greetings");
 // Using a type witness
 Extender.<Integer>extend(100);
 ```
+
+**Wildcards**
+
+Wildcards denoted by the question mark (?) can be used to represent an unknown type.
+
+Wildcards are helpful in situations like:
+- Parameter types
+- Field types
+- Variable types
+- Return types
+
+**Upper-bounded wildcards**
+
+Use `<? extends upper_bound>` to relax the restrictions of an upper bound.
+
+The following example does not only allow the `WorkerAnt` and `SoldierAnt` to be used as arguments for the `commenceWork()` method but only of type `Ant` even if they are subclasses.
+```
+class Ant { ... }
+class WorkerAnt extends Ant { ... }
+class SoldierAnt extends Ant { ... }
+
+class AntColony {
+    ...
+    static void commenceWork(List<Ant> workers) { ... }
+
+    List<Ant> ants = new ArrayList<>();
+    List<WorkerAnt> workerAnts = new ArrayList<>();
+    List<SoldierAnt> soldierAnts = new ArrayList<>();
+
+    AntColony.commenceWork(ants);
+
+    // Wont' work
+    AntColony.commenceWork(workerAnts);
+    AntColony.commenceWork(soldierAnts);
+}
+
+```
+Subclasses can be allowed to be passed as arguments in this way.
+```
+class FlexibleAntColony {
+    ...
+    static void commenceWork(List<? extends Ant> workers) { ... }
+}
+
+FlexibleAntColony.commenceWork(ants);
+FlexibleAntColony.commenceWork(workerAnts);
+FlexibleAntColony.commenceWork(soldierAnts);
+```
