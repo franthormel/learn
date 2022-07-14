@@ -785,3 +785,173 @@ Use wrapper classes when:
 | -------- | -------------------- | -------------------- |
 | Boxing   | Primitive to wrapper | `int` to `Integer`   |
 | Unboxing | Wrapper to primitive | `Double` to `double` |
+
+### 9. Generics
+
+Benefits are:
+- Allow code re-use for different types
+- Stronger type-checking
+- Eliminates casts
+- Implement generic algorithms
+
+|       | Formal parameter | Type parameter |
+| ----- | ---------------- | -------------- |
+| Input | Values           | Types          |
+
+```
+List<Integer> numbers = new ArrayList<Integer>();
+List<String> paragraph = new LinkedList<String>();
+```
+
+**Generic Types**
+
+A generic class or interface that is parameterized over types.
+
+`class_name<T1, T2, ..., Tn> { ... }`
+
+Type parameters utilize the angle brackets `<T>`.
+
+```
+// Without generics
+class Energy {
+    private Object object;
+
+    Energy(Object object) {
+        this.object = object;
+    }
+
+    public Object get() { 
+        return object;
+    }
+
+    public void set(Object object) {
+        this.object = object;
+    }
+}
+
+// With generics
+class Energy<T> {
+    private T value;
+
+    Energy(T value) {
+        this.value = value;
+    }
+
+    public T get() {
+        return value;
+    }
+
+    public void set(T value) {
+        this.value = value;
+    }
+}
+```
+
+**Naming conventions**
+
+Types parameter names are usually *single* and *uppercased* letters.
+
+| Type Name     | Description      |
+| ------------- | ---------------- |
+| E             | Element          |
+| K             | Key              |
+| N             | Number           |
+| T             | Type             |
+| V             | Value            |
+| S, U, V , ... | Succeeding types |
+
+**Invoking and instantiating**
+
+To reference the generic you have to perform a *generic type invocation* or also generally known as *parameterized type*, wherein the `T` type has to be replaced with a concrete value like `Integer`. 
+
+The `Integer` in this case is the *type parameter*.
+
+```
+Energy<Integer> lessEnergy = new Energy<Integer>();
+
+// Autoboxing
+Energy<Double> moreEnergy = new Energy<Double>();
+
+// Diamond-notation for Java SE 7 and later
+Energy<Float> energy = new Energy<>();
+```
+
+**Multiple type parameters**
+
+```
+interface InputOutput<T, V> {
+    T processInput();
+    V deliverOutput();
+}
+
+class Machine<T, V> implements InputOutput<T, V> {
+    private T input;
+    private V output;
+
+    T processInput() { ... }
+    V deliverOutput() { ... }
+}
+
+// Invocation
+Machine<String, Integer> b = new Machine<String, Integer>();
+
+// Autoboxing
+Machine<int, double> c = new Machine<int, double>();
+
+// Diamond-box
+Machine<String, Byte> d = new Machine<>();
+
+// Parameterized type as a type parameter
+Machine<String, Machine<Integer>> a = new Machine<>();
+```
+
+**Raw types**
+
+A generic class or interface without a type
+
+Raw type 
+```
+Machine rawMachine = new Machine();
+```
+Assign parameterized to a raw type is allowed
+```
+Machine<int, String> stringMachine = new Machine<>();
+Machine rawMachine = stringMachine;
+```
+Compiler warning (unchecked conversion) assigning a raw type to a parameterized type
+```
+Machine rawMachine = new Machine();
+Machine<int, String> stringMachine = rawMachine;
+```
+Compiler warning (unchecked invocation) when using a generic method
+```
+Machine<int, String> stringMachine = new Machine<>(); 
+Machine rawMachine = stringMachine;
+rawMachine.processInput();
+```
+
+**Generic methods**
+
+Methods that have their own type parameters.
+
+The type parameter's scope is limited within the method only.
+
+Can be used on:
+- Static and non-static methods
+- Constructors
+
+```
+class Util {
+    static <K, V> Unit combine(Unit<K, V> a, Unit<K, V> b) { ... }
+}
+
+class Unit<K, V> { ... }
+
+Unit<Integer, String> unitA = new Unit<>(0, "A");
+Unit<Integer, String> unitB = new Unit<>(1, "B");
+
+Unit mergedUnit = Util.<Integer, String>combine(unitA, unitB);
+
+// Type inference
+Unit anotherMergedUnit = Util.combine(unitA, unitB);
+```
