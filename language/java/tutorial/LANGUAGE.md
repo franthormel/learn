@@ -895,9 +895,6 @@ class Machine<T, V> implements InputOutput<T, V> {
 // Invocation
 Machine<String, Integer> b = new Machine<String, Integer>();
 
-// Autoboxing
-Machine<int, double> c = new Machine<int, double>();
-
 // Diamond-box
 Machine<String, Byte> d = new Machine<>();
 
@@ -915,17 +912,17 @@ Machine rawMachine = new Machine();
 ```
 Assign parameterized to a raw type is allowed
 ```
-Machine<int, String> stringMachine = new Machine<>();
+Machine<Integer, String> stringMachine = new Machine<>();
 Machine rawMachine = stringMachine;
 ```
 Compiler warning (unchecked conversion) assigning a raw type to a parameterized type
 ```
 Machine rawMachine = new Machine();
-Machine<int, String> stringMachine = rawMachine;
+Machine<Integer, String> stringMachine = rawMachine;
 ```
 Compiler warning (unchecked invocation) when using a generic method
 ```
-Machine<int, String> stringMachine = new Machine<>(); 
+Machine<Integer, String> stringMachine = new Machine<>(); 
 Machine rawMachine = stringMachine;
 rawMachine.processInput();
 ```
@@ -941,7 +938,10 @@ Can be used on:
 - Constructors
 
 ```
-class Util {
+class Combinator {
+    ...
+    <T> Combinator(T value) { ... }
+
     static <K, V> Unit combine(Unit<K, V> a, Unit<K, V> b) { ... }
 }
 
@@ -950,8 +950,80 @@ class Unit<K, V> { ... }
 Unit<Integer, String> unitA = new Unit<>(0, "A");
 Unit<Integer, String> unitB = new Unit<>(1, "B");
 
-Unit mergedUnit = Util.<Integer, String>combine(unitA, unitB);
+Unit mergedUnit = Combinator.<Integer, String>combine(unitA, unitB);
 
 // Type inference
-Unit anotherMergedUnit = Util.combine(unitA, unitB);
+Unit anotherMergedUnit = Combinator.combine(unitA, unitB);
+
+// Constructor type inference
+Combinator<String> combinator = new Combinator<>("");
+```
+
+**Bounded type parameters**
+
+Restricting type parameters to be of a certain subclass.
+
+As long as the subclass is in a "is-a" relationship with the parent class. The subclass can be used as a parameter type.
+
+For example: an `Integer` can be used for an `Object` type  and also a `Number` type.
+
+```
+class Compressor {
+    static <T extends Number> void compress(T value) { }
+}
+
+Compressor.compress(1);
+Compressor.<Double>compress(1.2);
+
+// Won't work since String is not a subclass of Number
+Compressor.compress("");
+```
+Methods of the bounded type can be invoked.
+```
+class Elevator {
+    void elevate() { ... }
+}
+
+class Dimension<T extends Elevator> {
+    T value;
+    ...
+    void measure() {
+        value.elevate();
+       ...
+    }
+} 
+```
+Multiple bounds can be used.
+
+`<T extends B1 & B2 & ... Bn>`
+
+If one of the bounds is a class it must be declared first.
+
+```
+class A { ... }
+interface B { ... }
+interface C { ... }
+
+class D <T extends A & B & C> { ... }
+
+// Won't work - classes first then interfaces
+class E <T extends B & A & C> { ... }
+```
+
+**Type inference**
+
+The Java compiler's ability to determine the argument(s) type to make an invocation possible therefore making *type witness(es)* optional.
+
+
+
+```
+class Extender {
+    static <T> void extend(T value) { ... }
+}
+
+// Type inference works here
+Extender.extend("Greetings");
+
+// Using a type witness
+Extender.<Integer>extend(100);
 ```
