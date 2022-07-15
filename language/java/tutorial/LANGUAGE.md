@@ -723,6 +723,71 @@ public class GeneralAlert { ... }
 
 ### 8. Numbers and Strings
 
+**Formatting print output**
+
+Use the `PrintStream.format()` method to format print outputs like this:
+```
+int apples = 10;
+
+System.out.format("I have %d apples.", i);
+```
+
+Use the `DecimalFormat` class to format the display of decimals like this:
+```
+DecimalFormat formatter = new DecimalFormat(pattern);
+String output = formatter.format(input);
+```
+
+| Input      | Pattern      | Output      |
+| ---------- | ------------ | ----------- |
+| 123456.789 | ###,###.###  | 123,456.789 |
+| 123456.789 | ###.##       | 123456.79   |
+| 123.78     | 000000.000   | 000123.780  |
+| 12345.67   | $###,###.### | $12,345.67  |
+
+**Strings**
+
+Sequences of characters.
+
+```
+char a = 'a';
+char b = '\u0392';
+char[] text =  { 'a', 'p', 'p', 'l', 'e', 's' };
+
+String apples = new String(text);
+String oranges  = "oranges";
+```
+
+Use the `StringBuilder` class if you want to perform any of the following: `append`, `delete`, `insert`, `replace`, or  `reverse`. The `StringBuilder` class has an initial capacity of 16.
+
+**Autoboxing and Unboxing**
+
+Automatic conversion between wrapper classes and a primitive type and vice-versa.
+
+| Wrapper class | Primitive data type |
+| ------------- | ------------------- |
+| Number        | `abstract` class    |
+| Byte          | byte                |
+| Short         | short               |
+| Integer       | int                 |
+| Long          | long                |
+| Float         | float               |
+| Double        | double              |
+| Boolean       | boolean             |
+| Character     | char                |
+
+Use wrapper classes when:
+1. Method arguments require Objects
+2. Determining the upper `MAX_VALUE` and lower `MIN_VALUE` bound values for a data type
+3. Conversion between data types: String to int, double, and vice-versa.
+
+| Name     | Description          | Example              |
+| -------- | -------------------- | -------------------- |
+| Boxing   | Primitive to wrapper | `int` to `Integer`   |
+| Unboxing | Wrapper to primitive | `Double` to `double` |
+
+
+
 ### 9. Generics
 
 Benefits are:
@@ -1074,527 +1139,6 @@ class WildcardFixed {
 Wildcards are used best for argument type parameters and not return types (generics are meant for specificity, not the other way around).
 
 An upper-bounded list like `List<? extends Number>` is effective *read-only*.
-
-**Type erasure**
-
-The compiler applies *type erasure* to incur no runtime overhead.
-
-It performs the following during compile-time:
-- Replacement of all generic type parameters with their bounds or `Object` if unbounded.
-```
-// Before type erasure (unbounded)
-class Media<T> { 
-    private T value;
-
-    Media(T value) {
-        this.value = value;
-    }
-
-    static <T> void replace(T value) { ... }
- }
-
-// After type erasure (unbounded)
-class Media {
-    private Object value;
-
-    Media(Object value) {
-        this.value = value;
-    }
-
-    static void replace(Object value) { ... }
-}
-
-// Before type erasure (bounded)
-class Target<T extends Media<T>> {
-    private T data;
-
-    Target(T data) {
-        this.data = data;
-    }
-
-    static <T extends Media> void demolish(T media) { ... }
-}
-
-// After type erasure (bounded)
-class Target {
-    private Media data;
-
-    Target(Media data) {
-        this.data = data;
-    }
-
-    static void demolish(Media media) { ... }
-}
-```
-
-- Insert type casts to preserve type safety.
-- Generate bridge methods to preserve polymorphism in extended generic types.
-
-```
-// Before type erasure
-class Box<T> {
-    private T value;
-    ...
-    void setValue(T value) {
-        this.value = value;
-    }
-}
-
-class IntBox extends Box<Integer> { 
-    ...
-    void setValue(Integer value) {
-        super.setValue(value);
-    }
-}
-
-IntBox intBox = new IntBox(20);
-Box box = intBox;       // Raw type - unchecked warning
-box.setData("Ten");     // throws ClassCastException
-
-// After type erasure (with bridge method)
-class IntBox extends Box<Integer> { 
-    ...
-    // Generated bridge method
-    public void setValue(Object value) {
-        setValue((Integer) value);
-    }
-
-    void setValue(Integer value) {
-        super.setValue(value);
-    }
-}
-```
-
-**Non-reifiable**
-
-A *reifiable* type is a type with available information during runtime (primitives, non-generics, raw types, unbounded wildcard invocations)
-
-A *non-reifiable* type is a type with information removed during compile-time by type erasure.
-
-**Heap pollution**
-
-Occurs when a variable of a parameterized type refers to an object that is not of that parameterized type.
-
-*Unchecked warnings* are generated when the correctness of an operation regarding a parameterized type could not be verified (during compile-time or runtime).
-
-**Formatting print output**
-
-Use the `PrintStream.format()` method to format print outputs like this:
-```
-int apples = 10;
-
-System.out.format("I have %d apples.", i);
-```
-
-Use the `DecimalFormat` class to format the display of decimals like this:
-```
-DecimalFormat formatter = new DecimalFormat(pattern);
-String output = formatter.format(input);
-```
-
-| Input      | Pattern      | Output      |
-| ---------- | ------------ | ----------- |
-| 123456.789 | ###,###.###  | 123,456.789 |
-| 123456.789 | ###.##       | 123456.79   |
-| 123.78     | 000000.000   | 000123.780  |
-| 12345.67   | $###,###.### | $12,345.67  |
-
-**Strings**
-
-Sequences of characters.
-
-```
-char a = 'a';
-char b = '\u0392';
-char[] text =  { 'a', 'p', 'p', 'l', 'e', 's' };
-
-String apples = new String(text);
-String oranges  = "oranges";
-```
-
-Use the `StringBuilder` class if you want to perform any of the following: `append`, `delete`, `insert`, `replace`, or  `reverse`. The `StringBuilder` class has an initial capacity of 16.
-
-**Autoboxing and Unboxing**
-
-Automatic conversion between wrapper classes and a primitive type and vice-versa.
-
-| Wrapper class | Primitive data type |
-| ------------- | ------------------- |
-| Number        | `abstract` class    |
-| Byte          | byte                |
-| Short         | short               |
-| Integer       | int                 |
-| Long          | long                |
-| Float         | float               |
-| Double        | double              |
-| Boolean       | boolean             |
-| Character     | char                |
-
-Use wrapper classes when:
-1. Method arguments require Objects
-2. Determining the upper `MAX_VALUE` and lower `MIN_VALUE` bound values for a data type
-3. Conversion between data types: String to int, double, and vice-versa.
-
-| Name     | Description          | Example              |
-| -------- | -------------------- | -------------------- |
-| Boxing   | Primitive to wrapper | `int` to `Integer`   |
-| Unboxing | Wrapper to primitive | `Double` to `double` |
-
-
-
-Benefits are:
-- Allow code re-use for different types
-- Stronger type-checking
-- Eliminates casts
-- Implement generic algorithms
-
-|       | Formal parameter | Type parameter |
-| ----- | ---------------- | -------------- |
-| Input | Values           | Types          |
-
-```
-List<Integer> numbers = new ArrayList<Integer>();
-List<String> paragraph = new LinkedList<String>();
-```
-
-**Generic Types**
-
-A generic class or interface that is parameterized over types.
-
-`class_name<T1, T2, ..., Tn> { ... }`
-
-Type parameters utilize the angle brackets `<T>`.
-
-```
-class Energy {
-    private Object object;
-
-    Energy(Object object) {
-        this.object = object;
-    }
-
-    public Object get() { 
-        return object;
-    }
-
-    public void set(Object object) {
-        this.object = object;
-    }
-}
-
-class Energy<T> {
-    private T value;
-
-    Energy(T value) {
-        this.value = value;
-    }
-
-    public T get() {
-        return value;
-    }
-
-    public void set(T value) {
-        this.value = value;
-    }
-}
-```
-
-**Naming conventions**
-
-Types parameter names are usually *single* and *uppercased* letters.
-
-| Type Name     | Description      |
-| ------------- | ---------------- |
-| E             | Element          |
-| K             | Key              |
-| N             | Number           |
-| T             | Type             |
-| V             | Value            |
-| S, U, V , ... | Succeeding types |
-
-**Invoking and instantiating**
-
-To reference the generic you have to perform a *generic type invocation* or also generally known as *parameterized type*, wherein the `T` type has to be replaced with a concrete value like `Integer`. 
-
-The `Integer` in this case is the *type parameter*.
-
-```
-Energy<Integer> lessEnergy = new Energy<Integer>();
-
-// Autoboxing
-Energy<Double> moreEnergy = new Energy<Double>();
-
-// Diamond-notation for Java SE 7 and later
-Energy<Float> energy = new Energy<>();
-```
-
-**Multiple type parameters**
-
-```
-interface InputOutput<T, V> {
-    T processInput();
-    V deliverOutput();
-}
-
-class Machine<T, V> implements InputOutput<T, V> {
-    private T input;
-    private V output;
-
-    T processInput() { ... }
-    V deliverOutput() { ... }
-}
-
-// Invocation
-Machine<String, Integer> b = new Machine<String, Integer>();
-
-// Diamond-box
-Machine<String, Byte> d = new Machine<>();
-
-// Parameterized type as a type parameter
-Machine<String, Machine<Integer>> a = new Machine<>();
-```
-
-**Raw types**
-
-A generic class or interface without a type
-
-- Raw type 
-```
-Machine rawMachine = new Machine();
-```
-- Assign parameterized to a raw type is allowed
-```
-Machine<Integer, String> stringMachine = new Machine<>();
-Machine rawMachine = stringMachine;
-```
-- Compiler warning (unchecked conversion) assigning a raw type to a parameterized type
-```
-Machine rawMachine = new Machine();
-Machine<Integer, String> stringMachine = rawMachine;
-```
-- Compiler warning (unchecked invocation) when using a generic method
-```
-Machine<Integer, String> stringMachine = new Machine<>(); 
-Machine rawMachine = stringMachine;
-rawMachine.processInput();
-```
-
-**Generic methods**
-
-Methods that have their own type parameters.
-
-The type parameter's scope is limited within the method only.
-
-Can be used on:
-- Static and non-static methods
-- Constructors
-
-```
-class Combinator {
-    ...
-    <T> Combinator(T value) { ... }
-
-    static <K, V> Unit combine(Unit<K, V> a, Unit<K, V> b) { ... }
-}
-
-class Unit<K, V> { ... }
-
-Unit<Integer, String> unitA = new Unit<>(0, "A");
-Unit<Integer, String> unitB = new Unit<>(1, "B");
-
-Unit mergedUnit = Combinator.<Integer, String>combine(unitA, unitB);
-
-// Type inference
-Unit anotherMergedUnit = Combinator.combine(unitA, unitB);
-
-// Constructor type inference
-Combinator<String> combinator = new Combinator<>("");
-```
-
-**Bounded type parameters**
-
-Restricting type parameters to be of a certain subclass.
-
-As long as the subclass is in a "is-a" relationship with the parent class. The subclass can be used as a parameter type.
-
-For example: an `Integer` can be used for an `Object` type  and also a `Number` type.
-
-```
-class Compressor {
-    static <T extends Number> void compress(T value) { }
-}
-
-Compressor.compress(1);
-Compressor.<Double>compress(1.2);
-
-// Won't work since String is not a subclass of Number
-Compressor.compress("");
-```
-
-- Methods of the bounded type can be invoked.
-```
-class Elevator {
-    void elevate() { ... }
-}
-
-class Dimension<T extends Elevator> {
-    T value;
-    ...
-    void measure() {
-        value.elevate();
-       ...
-    }
-} 
-```
-- Multiple bounds can be used.
-
-`<T extends B1 & B2 & ... Bn>`
-
-If one of the bounds is a class it must be declared first.
-
-```
-class A { ... }
-interface B { ... }
-interface C { ... }
-
-class D <T extends A & B & C> { ... }
-
-// Won't work - classes first then interfaces
-class E <T extends B & A & C> { ... }
-```
-
-**Type inference**
-
-The Java compiler's ability to determine the argument(s) type to make an invocation possible therefore making *type witness(es)* optional.
-
-
-
-```
-class Extender {
-    static <T> void extend(T value) { ... }
-}
-
-// Type inference works here
-Extender.extend("Greetings");
-
-// Using a type witness
-Extender.<Integer>extend(100);
-```
-
-**Wildcards**
-
-Wildcards denoted by the question mark (?) can be used to represent an unknown type.
-
-Wildcards are helpful in situations like:
-- Parameter types
-- Field types
-- Variable types
-- Return types
-
-**Upper-bounded wildcards**
-
-`<? extends super_class>`
-
-Use to relax the restrictions of an upper bound.
-
-The following example does not only allow the `WorkerAnt` and `SoldierAnt` to be used as arguments for the `commenceWork()` method but only of type `Ant` even if they are subclasses.
-```
-class Ant { ... }
-class WorkerAnt extends Ant { ... }
-class SoldierAnt extends Ant { ... }
-
-class AntColony {
-    ...
-    static void commenceWork(List<Ant> workers) { ... }
-
-    List<Ant> ants = new ArrayList<>();
-    List<WorkerAnt> workerAnts = new ArrayList<>();
-    List<SoldierAnt> soldierAnts = new ArrayList<>();
-
-    AntColony.commenceWork(ants);
-
-    // Wont' work
-    AntColony.commenceWork(workerAnts);
-    AntColony.commenceWork(soldierAnts);
-}
-
-```
-- Subclasses can be allowed to be passed as arguments in this way.
-```
-class FlexibleAntColony {
-    ...
-    static void commenceWork(List<? extends Ant> workers) { ... }
-}
-
-FlexibleAntColony.commenceWork(ants);
-FlexibleAntColony.commenceWork(workerAnts);
-FlexibleAntColony.commenceWork(soldierAnts);
-```
-
-**Unbounded wildcards**
-
-`<?>`
-
-Value(s) of an *unkown type.*
-
-Useful if:
-- Functionality of the `Object` class is being used
-- Methods of the generic does not depend on the type parameter like `List.size` or `List.clear`.
-
-```
-void printList(List<?> list) { ... }
-```
-
-**Lower-bounded wildcards**
-
-`<? super sub_class>`
-
-Used to specify types of a *superclass*.
-
-Adds flexibility for a type and its ancestors.
-
-```
-print addNumbers(List<? super Integer> numbers) { ... }
-```
-
-**Wildcard captures**
-
-When the compiler infers that type is of `Object` but since the `List.set` is invoked, the compiler thinks the wrong variable type is being assigned therfore an error message of `capture of` is produced. 
-
-```
-class WildcardError {
-    void replace(List<?> list) {
-        list.set(0, list.get(0));
-    }
-}
-
-class WildcardFixed {
-    void replace(List<?> list) {
-        replaceHelper(list);
-    }
-
-    private <T> replaceHelper(List<T> list) {
-        list.set(0, list.get(0));
-    }
-}
-```
-
-**Wildcards usage guidelines**
-
-*In* variables serves data to the code like the `src` in a copy method: `copy(src, dest)`.
-
-*Out* variables holds data for use somewhere else like the `dest` in a copy method: `copy(src, dest)`.
-
-| Variable purpose                    | Wildcard usage                               |
-| ----------------------------------- | -------------------------------------------- |
-| *In*                                | *upper-bounded* or `<? extends super_class>` |
-| *Out*                               | *lower-bounded* or `<? super sub_class>`     |
-| *In* using general `Object` methods | *unbounded wildcard* or `<?>`                |
-| Both as an *In* and *Out*           | *No* wildcards or `<T>`                      |
-
-Wildcards are used best for argument type parameters and not return types (generics are meant for specificity not the other way around).
-
-An upper-bounded list like `List<? extends Number>` is effectively *read-only*.
 
 **Type erasure**
 
