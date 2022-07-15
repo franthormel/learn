@@ -1,15 +1,26 @@
 # [Java](https://docs.oracle.com/javase/tutorial/)
 
-### Examples
-1. [RosterTest](https://docs.oracle.com/javase/tutorial/java/javaOO/examples/RosterTest.java)
-    - Local classes
-    - Anonymous classes
-    - Lambda expressions
-2. [Calculator](https://docs.oracle.com/javase/tutorial/java/javaOO/examples/Calculator.java)
-   - Lambda expressions
-3. [MethodReferencesExamples](https://docs.oracle.com/javase/tutorial/java/javaOO/examples/MethodReferencesExamples.java)
-   - Method references
-4. DataStructure [before](https://docs.oracle.com/javase/tutorial/java/javaOO/examples/DataStructure.java) and [after](https://docs.oracle.com/javase/tutorial/java/javaOO/QandE/DataStructure.java)
-   - Nested classes
-   - Local classes
-   - Lambda expressions
+Essential topics include:
+1. Class
+2. Inheritance
+3. Interfaces
+4. Package
+5. Variables
+6. Arrays
+7. Annotations
+8. Numbers and Strings
+9. Generics
+
+## [Quickstart](QUICKSTART.md)
+
+Contains code snippets for all essential Java topics:
+
+## [Language](LANGUAGE.md)
+
+Contains the code snippets found in QUICKSTART *with* definitions and explanations.
+
+## [Example](example/)
+
+Contains an example for
+1. [coprime](example\coprime) | [Source](https://docs.oracle.com/javase/tutorial/java/generics/QandE/generics-questions.html)
+   -  Find the first integer in a list that is relatively prime to a list of specified integers. Two integers are relatively prime if their greatest common divisor (GCD) is one (1).

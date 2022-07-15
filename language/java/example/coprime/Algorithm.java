@@ -1,4 +1,4 @@
-package tutorial.coprime;
+package example.coprime;
 
 import java.util.List;
 
