@@ -516,3 +516,335 @@ char[] text =  { 'a', 'p', 'p', 'l', 'e', 's' };
 String apples = new String(text);
 String oranges  = "oranges";
 ```
+
+### 9. Generics
+
+|       | Formal parameter | Type parameter |
+| ----- | ---------------- | -------------- |
+| Input | Values           | Types          |
+
+```
+List<Integer> numbers = new ArrayList<Integer>();
+List<String> paragraph = new LinkedList<String>();
+```
+
+**Generic Types**
+
+`class_name<T1, T2, ..., Tn> { ... }` and `<T>`.
+
+```
+class Energy {
+    private Object object;
+
+    Energy(Object object) {
+        this.object = object;
+    }
+
+    public Object get() { 
+        return object;
+    }
+
+    public void set(Object object) {
+        this.object = object;
+    }
+}
+
+class Energy<T> {
+    private T value;
+
+    Energy(T value) {
+        this.value = value;
+    }
+
+    public T get() {
+        return value;
+    }
+
+    public void set(T value) {
+        this.value = value;
+    }
+}
+```
+
+**Naming conventions**
+
+| Type Name     | Description      |
+| ------------- | ---------------- |
+| E             | Element          |
+| K             | Key              |
+| N             | Number           |
+| T             | Type             |
+| V             | Value            |
+| S, U, V , ... | Succeeding types |
+
+**Invoking and instantiating**
+
+```
+Energy<Integer> lessEnergy = new Energy<Integer>();
+
+// Diamond-notation for Java SE 7 and later
+Energy<Float> energy = new Energy<>();
+```
+
+**Multiple type parameters**
+
+```
+interface InputOutput<T, V> {
+    T processInput();
+    V deliverOutput();
+}
+
+class Machine<T, V> implements InputOutput<T, V> {
+    private T input;
+    private V output;
+
+    T processInput() { ... }
+    V deliverOutput() { ... }
+}
+
+// Invocation
+Machine<String, Integer> b = new Machine<String, Integer>();
+
+// Diamond-box
+Machine<String, Byte> d = new Machine<>();
+
+// Parameterized type as a type parameter
+Machine<String, Machine<Integer>> a = new Machine<>();
+```
+
+**Raw types**
+
+```
+Machine rawMachine = new Machine();
+```
+
+```
+Machine<Integer, String> stringMachine = new Machine<>();
+Machine rawMachine = stringMachine;
+```
+
+```
+// Compiler warning (unchecked conversion)
+Machine rawMachine = new Machine();
+Machine<Integer, String> stringMachine = rawMachine;
+```
+
+```
+// Compiler warning (unchecked invocation)
+Machine<Integer, String> stringMachine = new Machine<>(); 
+Machine rawMachine = stringMachine;
+rawMachine.processInput();
+```
+
+**Generic methods**
+
+```
+class Combinator {
+    ...
+    <T> Combinator(T value) { ... }
+
+    static <K, V> Unit combine(Unit<K, V> a, Unit<K, V> b) { ... }
+}
+
+class Unit<K, V> { ... }
+
+Unit<Integer, String> unitA = new Unit<>(0, "A");
+Unit<Integer, String> unitB = new Unit<>(1, "B");
+
+Unit mergedUnit = Combinator.<Integer, String>combine(unitA, unitB);
+
+// Type inference
+Unit anotherMergedUnit = Combinator.combine(unitA, unitB);
+
+// Constructor type inference
+Combinator<String> combinator = new Combinator<>("");
+```
+
+**Bounded type parameters**
+
+```
+class Compressor {
+    static <T extends Number> void compress(T value) { ... }
+}
+
+Compressor.compress(1);
+Compressor.<Double>compress(1.2);
+
+// Won't work since String is not a subclass of Number
+Compressor.compress("");
+```
+
+```
+class Elevator {
+    void elevate() { ... }
+}
+
+class Dimension<T extends Elevator> {
+    T value;
+    ...
+    void measure() {
+        value.elevate();
+       ...
+    }
+} 
+```
+
+`<T extends B1 & B2 & ... Bn>`
+
+```
+class A { ... }
+interface B { ... }
+interface C { ... }
+
+class D <T extends A & B & C> { ... }
+
+// Won't work - classes first then interfaces
+class E <T extends B & A & C> { ... }
+```
+
+**Type inference**
+
+```
+class Extender {
+    static <T> void extend(T value) { ... }
+}
+
+// Type inference works here
+Extender.extend("Greetings");
+
+// Using a type witness
+Extender.<Integer>extend(100);
+```
+
+**Wildcards**
+
+`<?>`
+
+**Upper-bounded wildcards**
+
+`<? extends super_class>`
+
+```
+class Ant { ... }
+class WorkerAnt extends Ant { ... }
+class SoldierAnt extends Ant { ... }
+
+class AntColony {
+    ...
+    static void commenceWork(List<Ant> workers) { ... }
+}
+
+List<Ant> ants = new ArrayList<>();
+List<WorkerAnt> workerAnts = new ArrayList<>();
+List<SoldierAnt> soldierAnts = new ArrayList<>();
+
+AntColony.commenceWork(ants);
+
+// Wont' work
+AntColony.commenceWork(workerAnts);
+AntColony.commenceWork(soldierAnts);
+```
+
+```
+class FlexibleAntColony {
+    ...
+    static void commenceWork(List<? extends Ant> workers) { ... }
+}
+
+FlexibleAntColony.commenceWork(ants);
+FlexibleAntColony.commenceWork(workerAnts);
+FlexibleAntColony.commenceWork(soldierAnts);
+```
+
+**Unbounded wildcards**
+
+`<?>`
+
+```
+void printList(List<?> list) { ... }
+```
+
+**Lower-bounded wildcards**
+
+`<? super sub_class>`
+
+```
+print addNumbers(List<? super Integer> numbers) { ... }
+```
+
+**Wildcard captures**
+
+```
+class WildcardError {
+    void replace(List<?> list) {
+        list.set(0, list.get(0));
+    }
+}
+
+class WildcardFixed {
+    void replace(List<?> list) {
+        replaceHelper(list);
+    }
+
+    private <T> replaceHelper(List<T> list) {
+        list.set(0, list.get(0));
+    }
+}
+```
+
+**Wildcards usage guidelines**
+
+| Variable purpose                    | Wildcard usage                               |
+| ----------------------------------- | -------------------------------------------- |
+| *In*                                | *upper-bounded* or `<? extends super_class>` |
+| *Out*                               | *lower-bounded* or `<? super sub_class>`     |
+| *In* using general `Object` methods | *unbounded wildcard* or `<?>`                |
+| Both as an *In* and *Out*           | *No* wildcards or `<T>`                      |
+
+**Type erasure**
+
+```
+// Before type erasure (unbounded)
+class Media<T> { 
+    private T value;
+
+    Media(T value) {
+        this.value = value;
+    }
+
+    static <T> void replace(T value) { ... }
+ }
+
+// After type erasure (unbounded)
+class Media {
+    private Object value;
+
+    Media(Object value) {
+        this.value = value;
+    }
+
+    static void replace(Object value) { ... }
+}
+
+// Before type erasure (bounded)
+class Target<T extends Media<T>> {
+    private T data;
+
+    Target(T data) {
+        this.data = data;
+    }
+
+    static <T extends Media> void demolish(T media) { ... }
+}
+
+// After type erasure (bounded)
+class Target {
+    private Media data;
+
+    Target(Media data) {
+        this.data = data;
+    }
+
+    static void demolish(Media media) { ... }
+}
+```
