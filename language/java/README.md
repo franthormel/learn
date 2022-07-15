@@ -13,7 +13,7 @@ Essential topics include:
 
 ## [Quickstart](QUICKSTART.md)
 
-Contains code snippets for all essential Java topics:
+Contains code snippets for all essential Java SE 8 topics:
 
 ## [Language](LANGUAGE.md)
 
