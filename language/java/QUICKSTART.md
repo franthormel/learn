@@ -409,11 +409,102 @@ interface FishProducer extends Producer {
 ```
 
 ### 4. Package
+
 ```
 package operators;
 
 class Operator { ... }
 class MedicalOperator extends Operator { ... }
+```
+
+**Naming conventions**
+
+```
+package com.example.class;
+package com.example.worker_utils;
+```
+
+**Using packages**
+```
+java.util.List list;
+```
+
+```
+package name;
+
+import java.util.List;
+
+List list;
+```
+
+```
+package name
+
+import java.util.*;
+
+List list;
+Observer observer;
+Formattable formattable;
+```
+
+**Hierarchy**
+
+```
+// Only within that package
+import java.awt;
+
+// All packages
+import java.awt.*;
+import java.awt.color.*;
+```
+
+**Ambiguity**
+
+```
+import com.graphics
+
+Graphics graphics;
+
+// From another package with the same name
+digital.Graphics digitalGraphics;
+```
+
+**Static imports**
+
+```
+// Without static imports
+Math.PI;
+Math.abs(alpha);
+Math.cos(beta, omega);
+
+// With static imports
+import static java.lang.Math.*;
+
+PI;
+abs(alpha);
+cos(beta, omega);
+```
+
+**Managing source and class files**
+
+```
+// Filename:    CustomObjects.java
+// Directory:   custom
+// Path:        ../custom/CustomObjects.java
+
+package custom;
+
+class CustomObjects { ... }
+```
+
+```
+// Filename:    CustomObjects.java
+// Directory:   custom
+// Path:        ../com/domain/custom/CustomObjects.java
+
+package com.domain.custom;
+
+class CustomObjects { ... }
 ```
 
 ### 5. Variables

@@ -577,6 +577,14 @@ interface FishProducer extends Producer {
 
 A namespace that *organizes* a set of related classes and interfaces. 
 
+The purposes of using a package are:
+- Ease in finding and using files
+- Avoid naming conflicts
+- Control access
+- Group related files
+
+If you do not use the `package` statement, the type ends up in an unnamed package.
+
 A collection of packages could be called a library.
 
 ```
@@ -584,6 +592,111 @@ package operators;
 
 class Operator { ... }
 class MedicalOperator extends Operator { ... }
+```
+
+**Naming conventions**
+
+- All lower-cased
+- Use reversed domain name (if needed)
+
+```
+package com.example.class;
+package com.example.worker_utils;
+```
+
+**Using packages**
+- Referring using its qualified name
+```
+java.util.List list;
+```
+
+- Importing a package number
+```
+package name;
+
+import java.util.List;
+
+List list;
+```
+
+- Import all package members
+```
+package name
+
+import java.util.*;
+
+List list;
+Observer observer;
+Formattable formattable;
+```
+
+**Hierarchy**
+
+If a package member also contains its own package(s), it will not be automatically imported unless *explicitly* imported.
+
+```
+// Only within that package
+import java.awt;
+
+// All packages
+import java.awt.*;
+import java.awt.color.*;
+```
+
+**Ambiguity**
+
+If a member of one package shares the same name (conflict) with another member of another package, either member must use its qualified name.
+
+```
+import com.graphics
+
+Graphics graphics;
+
+// From another package with the same name
+digital.Graphics digitalGraphics;
+```
+
+**Static imports**
+
+If there is frequent usage of static fields or methods from a package, use static imports to shorten your code.
+
+```
+// Without static imports
+Math.PI;
+Math.abs(alpha);
+Math.cos(beta, omega);
+
+// With static imports
+import static java.lang.Math.*;
+
+PI;
+abs(alpha);
+cos(beta, omega);
+```
+
+**Managing source and class files**
+
+It is suggested that the package name is within a directory of the same name.
+
+```
+// Filename:    CustomObjects.java
+// Directory:   custom
+// Path:        ../custom/CustomObjects.java
+
+package custom;
+
+class CustomObjects { ... }
+```
+
+However, if domain names are used it is also suggested to do the same pattern.
+```
+// Filename:    CustomObjects.java
+// Directory:   custom
+// Path:        ../com/domain/custom/CustomObjects.java
+
+package com.domain.custom;
+
+class CustomObjects { ... }
 ```
 
 ### 5. Variables
