@@ -1040,7 +1040,9 @@ Wildcards are helpful in situations like:
 
 **Upper-bounded wildcards**
 
-Use `<? extends upper_bound>` to relax the restrictions of an upper bound.
+`<? extends super_class>`
+
+Use to relax the restrictions of an upper bound.
 
 The following example does not only allow the `WorkerAnt` and `SoldierAnt` to be used as arguments for the `commenceWork()` method but only of type `Ant` even if they are subclasses.
 ```
@@ -1074,4 +1076,159 @@ class FlexibleAntColony {
 FlexibleAntColony.commenceWork(ants);
 FlexibleAntColony.commenceWork(workerAnts);
 FlexibleAntColony.commenceWork(soldierAnts);
+```
+
+**Unbounded wildcards**
+
+`<?>`
+
+Value(s) of an *unkown type.*
+
+Useful if:
+- Functionality of the `Object` class is being used
+- Methods of the generic does not depend on the type parameter like `List.size` or `List.clear`.
+
+```
+void printList(List<?> list) { ... }
+```
+
+**Lower-bounded wildcards**
+
+`<? super sub_class>`
+
+Used to specify types of a *superclass*.
+
+Adds flexibility for a type and its ancestors.
+
+```
+print addNumbers(List<? super Integer> numbers) { ... }
+```
+
+**Wildcard captures**
+
+When the compiler infers that type is of `Object` but since the `List.set` is invoked, the compiler thinks the wrong variable type is being assigned therfore an error message of `capture of` is produced. 
+
+```
+class WildcardError {
+    void replace(List<?> list) {
+        list.set(0, list.get(0));
+    }
+}
+
+class WildcardFixed {
+    void replace(List<?> list) {
+        replaceHelper(list);
+    }
+
+    private <T> replaceHelper(List<T> list) {
+        list.set(0, list.get(0));
+    }
+}
+```
+
+**Wildcards usage guidelines**
+
+*In* variables serves data to the code like the `src` in a copy method: `copy(src, dest)`.
+
+*Out* variables holds data for use somewhere else like the `dest` in a copy method: `copy(src, dest)`.
+
+| Variable purpose                    | Wildcard usage                               |
+| ----------------------------------- | -------------------------------------------- |
+| *In*                                | *upper-bounded* or `<? extends super_class>` |
+| *Out*                               | *lower-bounded* or `<? super sub_class>`     |
+| *In* using general `Object` methods | *unbounded wildcard* or `<?>`                |
+| Both as an *In* and *Out*           | *No* wildcards or `<T>`                      |
+
+Wildcards are used best for argument type parameters and not return types (generics are meant for specificity not the other way around).
+
+An upper-bounded list like `List<? extends Number>` is effectively *read-only*.
+
+**Type erasure**
+
+The compiler applies *type erasure* to incur no runtime overhead.
+
+It performs the following during compile-time:
+- Replacement of all generic type parameters with their bounds or `Object` if unbounded.
+```
+// Before type erasure (unbounded)
+class Media<T> { 
+    private T value;
+
+    Media(T value) {
+        this.value = value;
+    }
+
+    static <T> void replace(T value) { ... }
+ }
+
+// After type erasure (unbounded)
+class Media {
+    private Object value;
+
+    Media(Object value) {
+        this.value = value;
+    }
+
+    static void replace(Object value) { ... }
+}
+
+// Before type erasure (bounded)
+class Target<T extends Media<T>> {
+    private T data;
+
+    Target(T data) {
+        this.data = data;
+    }
+
+    static <T extends Media> void demolish(T media) { ... }
+}
+
+// After type erasure (bounded)
+class Target {
+    private Media data;
+
+    Target(Media data) {
+        this.data = data;
+    }
+
+    static void demolish(Media media) { ... }
+}
+```
+
+- Insert type casts to preserve type safety.
+- Generate bridge methods to preserve polymorphism in extended generic types.
+
+```
+// Before type erasure
+class Box<T> {
+    private T value;
+    ...
+    void setValue(T value) {
+        this.value = value;
+    }
+}
+
+class IntBox extends Box<Integer> { 
+    ...
+    void setValue(Integer value) {
+        super.setValue(value);
+    }
+}
+
+IntBox intBox = new IntBox(20);
+Box box = intBox;       // Raw type - unchecked warning
+box.setData("Ten");     // throws ClassCastException
+
+// After type erasure (with bridge method)
+class IntBox extends Box<Integer> { 
+    ...
+    // Generated bridge method
+    public void setValue(Object value) {
+        setValue((Integer) value);
+    }
+
+    void setValue(Integer value) {
+        super.setValue(value);
+    }
+}
 ```
