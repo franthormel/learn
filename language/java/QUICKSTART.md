@@ -1,6 +1,6 @@
 # Java - Quickstart
 
-This guide is taken from the [The Java™ Tutorials ](https://docs.oracle.com/javase/tutorial/java/)
+This guide is taken from the [The Java™ Tutorials: Learning the Java Language](https://docs.oracle.com/javase/tutorial/java/)
 
 ### 1. Class
 ```
