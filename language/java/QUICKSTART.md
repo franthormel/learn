@@ -1,6 +1,8 @@
 # Java - Quickstart
 
-This guide is taken from the [The Java™ Tutorials: Learning the Java Language](https://docs.oracle.com/javase/tutorial/java/)
+This guide is taken from:
+- [The Java™ Tutorials: Learning the Java Language](https://docs.oracle.com/javase/tutorial/java/)
+- [The Java™ Tutorials: Essential Java Classes](https://docs.oracle.com/javase/tutorial/essential/)
 
 ### 1. Class
 ```
@@ -937,5 +939,19 @@ class Target {
     }
 
     static void demolish(Media media) { ... }
+}
+```
+
+### 10. Exceptions
+
+```
+void write() throws IOException {
+    try(...) {
+      ...    
+    } catch (IndexOutOfBoundsException e) {
+      ...
+    } finally {
+      ...
+    }
 }
 ```

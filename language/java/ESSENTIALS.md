@@ -13,12 +13,27 @@ Thrown exceptions must be enclosed by:
 - method that *throws* the exception
 
 Three (3) types of exceptions:
-1. Checked (Anticipatable)
-   - Attempt to open nonexistent file 
-2. Error (External, unanticipatable, unrecoverable)
-   - Unreadable file due to hardware or system malfunction
-3. Unchecked (Runtime)
-   - Logic errors or improper usage of an API
+1. *Checked* - anticipatable
+2. *Error* - external, unanticipatable, unrecoverable
+3. *Unchecked* - runtime
+   
+```
+void write() throws IOException {
+    try(...) {
+      ...    
+    } catch (IndexOutOfBoundsException e) {
+      ...
+    } finally {
+      ...
+    }
+}
+```
+
+- *try* - where exceptions occur
+- *catch* - where exceptions are handled
+- *finally* - block that always executes
+- *try*-with - resources that should be closed, typically used with any classes implementing [AutoCloseable](https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html).
+
 
 ### 2.Basic
 

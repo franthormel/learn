@@ -26,8 +26,6 @@ public class Computer {
 
 **Method**
 
-`access_modifier return_type method_name(method_parameters) { }` 
-
 ```
 private void draw();
 public void draw(int x, int y) { ... }
