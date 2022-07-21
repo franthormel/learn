@@ -35,8 +35,23 @@ void write() throws IOException {
 - *try*-with - resources that should be closed, typically used with any classes implementing [AutoCloseable](https://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html).
 
 
-### 2.Basic
+### 2.Basic I/O
 
+Byte streams [example](java_examples\src\io_streams\ByteStreams.java)
+- `InputStream`
+- `OutputStream`
+- `FileInputStream`
+- `FileOutputStream`
+
+Character streams [example](java_examples\src\io_streams\CharacterStreams.java)
+- `FileWriter`
+- `FileReader`
+
+Buffered streams
+- `BufferedInputStream`
+- `BufferedOutputStream`
+- `BufferedReader`
+- `BufferedWriter`
 
 ### 3.Concurrency
 

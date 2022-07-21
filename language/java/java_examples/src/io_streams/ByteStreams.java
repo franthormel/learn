@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ByteStreams {
+
     public static void main(String[] args) throws IOException {
 
         FileInputStream fileInput = null;
@@ -13,7 +14,8 @@ public class ByteStreams {
         try {
             fileInput = new FileInputStream("xanadu.txt");
             fileOutput = new FileOutputStream("xanadu-output.txt");
-            int data;         
+
+            int data;
 
             while ((data = fileInput.read()) != -1) {
                 fileOutput.write(data);
@@ -27,4 +29,5 @@ public class ByteStreams {
             }
         }
     }
+
 }
