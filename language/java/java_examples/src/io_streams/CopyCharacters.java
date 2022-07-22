@@ -10,25 +10,25 @@ import java.io.IOException;
  */
 public class CopyCharacters {
 
-	public static void main(String[] args) throws IOException{
-		
+	public static void main(String[] args) throws IOException {
+
 		FileReader fileReader = null;
 		FileWriter fileWriter = null;
-		
+
 		try {
 			fileReader = new FileReader("xanadu.txt");
 			fileWriter = new FileWriter("xanada-output.txt");
-			
+
 			int data;
-			
-			while((data = fileReader.read()) != -1) {
+
+			while ((data = fileReader.read()) != -1) {
 				fileWriter.write(data);
 			}
 		} finally {
-			if(fileReader != null) {
+			if (fileReader != null) {
 				fileReader.close();
 			}
-			if(fileWriter != null) {
+			if (fileWriter != null) {
 				fileWriter.close();
 			}
 		}
