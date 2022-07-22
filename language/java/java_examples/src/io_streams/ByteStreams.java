@@ -4,6 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/*
+ * Copy xanadu.txt using byte streams to another
+ * file one byte at a time.
+ */
 public class ByteStreams {
 
     public static void main(String[] args) throws IOException {

@@ -4,7 +4,11 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CharacterStreams {
+/*
+ * Copy xanadu.txt using character streams to another
+ * file using FileReader and FileWriter.
+ */
+public class CopyCharacters {
 
 	public static void main(String[] args) throws IOException{
 		
